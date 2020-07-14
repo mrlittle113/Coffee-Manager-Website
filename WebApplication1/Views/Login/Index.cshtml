@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/myCss")
+    <title>Login</title>
+</head>
+<body style="background-image: url('../img/login_bg.jpg');background-size: cover;height: 100vh">
+    <div class="row justify-content-center align-items-center" style="height: 100vh">
+        <div class="col-4 light rounded">
+            <div class="card card-signin my-5 p-4 border border-dark">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Sign In</h5>
+                    <form class="form-signin">
+                        <div class="form-label-group">
+                            <label for="inputEmail">Email address</label>
+                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                        </div>
+                        <div class="form-label-group">
+                            <label for="inputPassword">Password</label>
+                            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                        </div>
+                        <br />
+                        <div>
+                            <button class="btn btn-lg btn-primary bg-coffee btn-block text-uppercase" type="submit">Sign in</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/jqueryval")
+    @Scripts.Render("~/Scripts/myJs")
+    @Scripts.Render("~/Scripts/bootstrap")
+</body>
+</html>
+
+

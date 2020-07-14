@@ -1,0 +1,460 @@
+﻿
+@{
+                /**/
+
+                ViewBag.Title = "Detail";
+                Layout = "~/Views/Shared/_OverallManager.cshtml";
+}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 m-1">
+    <div class="row">
+        <div id="info" class="col-6">
+            <div class="rounded p-5 m-1 bg-coffee-light">
+                <table class="table table-bordered border-dark rounded">
+                    <tbody>
+                        <tr>
+                            <th scope="row">Ten chi nhanh:</th>
+                            <td>Chi nhanh A</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Dia chi:</th>
+                            <td>Duong A, huyen B</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Quan ly:</th>
+                            <td>Nguyen Van A</td>
+                        </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td><a onclick="toggleEdit()" style="width:100%" class="btn btn-secondary text-white bg-coffee">chinhsua</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="edit" class="col-6" style="display:none">
+            <div class="rounded p-5 m-1 bg-coffee-light">
+                <form>
+                    <table class="table table-bordered border-dark rounded">
+
+                        <tbody>
+                            <tr>
+                                <th scope="row">Ten chi nhanh:</th>
+                                <td><input style="width:100%" type="text" placeholder="Chi nhanh A" /></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Dia chi:</th>
+                                <td><input style="width:100%" type="text" placeholder="Dia chi" /></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Quan ly:</th>
+                                <td>
+                                    <select style="width:100%" id="" name="">
+                                        <option value="volvo">Volvo</option>
+                                        <option value="saab">Saab</option>
+                                        <option value="fiat">Fiat</option>
+                                        <option value="audi">Audi</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a onclick="cancelEdit()" style="width:100%" class="btn btn-secondary text-white bg-coffee">huy</a></td>
+                                <td><a style="width:100%" class="btn btn-secondary text-white bg-coffee">luu</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h6>Doanh thu trong tuan</h6>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                        <span data-feather="calendar"></span>
+                        This week
+                    </button>
+                </div>
+            </div>
+
+            <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="rounded p-5 m-1 bg-coffee-light">
+                <div class="row">
+                    <h6>Cac bao cao</h6>
+                </div>
+                <div class="row text-center">
+                    <ul class="nav nav-tabs">
+                        <li class="m-1" style="margin-left:0!important"><a class="btn btn-secondary bg-coffee" data-toggle="tab" href="#home">Nhan vien</a></li>
+                        <li class="m-1"><a class="btn btn-secondary bg-coffee" data-toggle="tab" href="#menu1">Nguyen lieu</a></li>
+                        <li class="m-1"><a class="btn btn-secondary bg-coffee" data-toggle="tab" href="#menu2">Tai chinh</a></li>
+                    </ul>
+                </div>
+                <div class="row text-center">
+                    <div class="tab-content" style="table-layout:fixed;width:100%">
+                        <div id="home" class="tab-pane fade in active">
+                            <h6>title</h6>
+                            <table class="table table-bordered table-striped border-dark rounded">
+                                <tbody>
+                                <thead>
+                                    <tr>
+                                        <th>Thoi gian</th>
+                                        <th>chitiet</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-secondary bg-coffee" data-toggle="modal" data-target="#my_modal2">modal</a></td>
+                                </tr>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-secondary bg-coffee">chitiet</a></td>
+                                </tr>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-secondary bg-coffee">chitiet</a></td>
+                                </tr>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-secondary bg-coffee">chitiet</a></td>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-secondary bg-coffee">chitiet</a></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="menu1" class="tab-pane fade">
+                            <h6>title</h6>
+                            <table class="table table-bordered table-striped border-dark rounded">
+                                <tbody>
+                                <thead>
+                                    <tr>
+                                        <th>Thoi gian</th>
+                                        <th>chitiet</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-info">chitiet</a></td>
+                                </tr>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-info">chitiet</a></td>
+                                </tr>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-info">chitiet</a></td>
+                                </tr>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-info">chitiet</a></td>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-info">chitiet</a></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="menu2" class="tab-pane fade">
+                            <h6>title</h6>
+                            <table class="table table-bordered table-striped border-dark rounded">
+                                <tbody>
+                                <thead>
+                                    <tr>
+                                        <th>Thoi gian</th>
+                                        <th>chitiet</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-info">chitiet</a></td>
+                                </tr>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-info">chitiet</a></td>
+                                </tr>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-info">chitiet</a></td>
+                                </tr>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-info">chitiet</a></td>
+                                <tr>
+                                    <th>09/07/2020 11:11 AM </th>
+                                    <td><a class="btn btn-info">chitiet</a></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-6">
+            <div class="rounded p-5 m-1 bg-coffee-light">
+                <h6>Danhsachnhanvien</h6>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Birth</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Detail</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>1998</td>
+                            <td>City A, District B</td>
+                            <td>000000000</td>
+                            <td><a data-toggle="modal" data-target="#my_modal" class="btn btn-secondary bg-coffee-light">chitiet</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>1998</td>
+                            <td>City A, District B</td>
+                            <td>000000000</td>
+                            <td><a class="btn btn-secondary bg-coffee-light">chitiet</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>1998</td>
+                            <td>City A, District B</td>
+                            <td>000000000</td>
+                            <td><a class="btn btn-secondary bg-coffee-light">chitiet</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>1998</td>
+                            <td>City A, District B</td>
+                            <td>000000000</td>
+                            <td><a class="btn btn-secondary bg-coffee-light">chitiet</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>1998</td>
+                            <td>City A, District B</td>
+                            <td>000000000</td>
+                            <td><a class="btn btn-secondary bg-coffee-light">chitiet</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+    </div>
+    @*modal*@
+    <div id="my_modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="col-6 p-5">
+                        <img src="~/img/ava_default.jpg" class="rounded img-fluid" />
+                    </div>
+                    <div class="col-6 pt-5">
+                        <table class="table table-bordered border-dark border">                           
+                            <tbody>
+                                <tr>
+                                    <td>Some brief</td>
+                                    <td>INFOOOO</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Some brief</td>
+                                    <td>INFOOOO</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Some brief</td>
+                                    <td>INFOOOO</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Some brief</td>
+                                    <td>INFOOOO</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Some brief</td>
+                                    <td>INFOOOO</td>
+
+                                </tr>
+                                <tr>
+                                    <td>Some brief</td>
+                                    <td>INFOOOO</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <table class="table table-bordered border-dark border">                 
+                    <tbody>
+                        <tr>
+                            <td>Some detail</td>
+                            <td>infooooo</td>
+                            <td>and moreeee</td>
+                        </tr>
+                        <tr>
+                            <td>Some detail</td>
+                            <td>infooooo</td>
+                            <td>and moreeee</td>
+                        </tr>
+                        <tr>
+                            <td>Some detail</td>
+                            <td>infooooo</td>
+                            <td>and moreeee</td>
+                        </tr>
+                        <tr>
+                            <td>Some detail</td>
+                            <td>infooooo</td>
+                            <td>and moreeee</td>
+                        </tr>
+                        <tr>
+                            <td>Some detail</td>
+                            <td>infooooo</td>
+                            <td>and moreeee</td>
+                        </tr>
+                        <tr>
+                            <td>Some detail</td>
+                            <td>infooooo</td>
+                            <td>and moreeee</td>
+                        </tr>
+                        <tr>
+                            <td>Some detail</td>
+                            <td>infooooo</td>
+                            <td>and moreeee</td>
+                        </tr>
+                        <tr>
+                            <td>Some detail</td>
+                            <td>infooooo</td>
+                            <td>and moreeee</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @*  *@
+    <div id="my_modal2" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <table class="table table-bordered border-dark border">
+                    <thead>
+                        <tr>
+
+                            <th scope="col">Noi dung</th>
+                            <th scope="col">Tri gia</th>
+                            <th scope="col">Ghi chu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tien dien</td>
+                            <td>1 000 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Tien nuoc</td>
+                            <td>1 000 000</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Tien internet</td>
+                            <td>2 000 000</td>
+                            <td>da cong no thang truoc</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.onload = $('.nav-tabs a[href="#home"]').tab('show');
+        window.onload = (function () {
+            'use strict'
+
+            feather.replace()
+
+            // Graphs
+            var ctx = document.getElementById('myChart')
+            // eslint-disable-next-line no-unused-vars
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [
+                        'Sunday',
+                        'Monday',
+                        'Tuesday',
+                        'Wednesday',
+                        'Thursday',
+                        'Friday',
+                        'Saturday'
+                    ],
+                    datasets: [{
+                        data: [
+                            15339,
+                            21345,
+                            18483,
+                            24003,
+                            23489,
+                            24092,
+                            12034
+                        ],
+                        lineTension: 0,
+                        backgroundColor: 'transparent',
+                        borderColor: '#F1BD81',
+                        borderWidth: 4,
+                        pointBackgroundColor: '#F1BD81'
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: false
+                            }
+                        }]
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            })
+        }())
+        function toggleEdit() {
+            $('#edit').css("display", "block");
+            $('#info').css("display", "none");
+        }
+        function cancelEdit() {
+            $('#edit').css("display", "none");
+            $('#info').css("display", "block");
+        }
+    </script>
+</main>
+
+
