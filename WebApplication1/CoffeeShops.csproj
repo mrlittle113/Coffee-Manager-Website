@@ -463,6 +463,7 @@
     <Content Include="Views\Shared\_AgencyManager.cshtml" />
     <Content Include="Views\Shared\_Staff.cshtml" />
     <Content Include="Views\AgencyManager\StorageManagement.cshtml" />
+    <Content Include="Views\Staff\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
