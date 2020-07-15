@@ -251,6 +251,9 @@
     <Compile Include="Models\invoice_detail.cs">
       <DependentUpon>Db.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\invoice_status.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\products.cs">
       <DependentUpon>Db.tt</DependentUpon>
     </Compile>
@@ -270,6 +273,9 @@
       <DependentUpon>Db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\shifts.cs">
+      <DependentUpon>Db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\shifts_week.cs">
       <DependentUpon>Db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\stores.cs">
@@ -454,6 +460,9 @@
     <Content Include="Views\OverallManager\Finance.cshtml" />
     <Content Include="Views\AgencyManager\ShiftManagement.cshtml" />
     <Content Include="Views\Staff\Order.cshtml" />
+    <Content Include="Views\Shared\_AgencyManager.cshtml" />
+    <Content Include="Views\Shared\_Staff.cshtml" />
+    <Content Include="Views\AgencyManager\StorageManagement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

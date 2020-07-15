@@ -12,24 +12,18 @@ namespace CoffeeShops.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class invoices
+    public partial class invoice_status
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public invoices()
+        public invoice_status()
         {
-            this.invoice_detail = new HashSet<invoice_detail>();
+            this.invoices = new HashSet<invoices>();
         }
     
         public int id { get; set; }
-        public Nullable<int> employee_id { get; set; }
-        public Nullable<int> store_id { get; set; }
-        public System.DateTime created_date { get; set; }
-        public Nullable<int> status { get; set; }
+        public string name { get; set; }
     
-        public virtual employees employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<invoice_detail> invoice_detail { get; set; }
-        public virtual stores stores { get; set; }
-        public virtual invoice_status invoice_status { get; set; }
+        public virtual ICollection<invoices> invoices { get; set; }
     }
 }

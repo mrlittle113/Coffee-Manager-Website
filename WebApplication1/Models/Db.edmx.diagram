@@ -38,6 +38,11 @@
         <AssociationConnector Association="dacnModel.report_detail_ibfk_1" ManuallyRouted="false" />
         <AssociationConnector Association="dacnModel.reports_ibfk_1" ManuallyRouted="false" />
         <AssociationConnector Association="dacnModel.warehouses_ibfk_1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dacnModel.invoice_status" Width="1.5" PointX="2.75" PointY="0.875" />
+        <EntityTypeShape EntityType="dacnModel.shifts_week" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="dacnModel.week" />
+        <AssociationConnector Association="dacnModel.Fk_manager" />
+        <AssociationConnector Association="dacnModel.status" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

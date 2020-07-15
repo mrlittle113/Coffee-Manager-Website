@@ -42,5 +42,6 @@ namespace CoffeeShops.Models
         public virtual ICollection<reports> reports { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<warehouses> warehouses { get; set; }
+        public virtual employees employees1 { get; set; }
     }
 }

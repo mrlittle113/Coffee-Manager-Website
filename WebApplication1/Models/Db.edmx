@@ -19,9 +19,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="store_id" Type="int" />
           <Property Name="employee_id" Type="int" />
           <Property Name="shift_id" Type="int" />
+          <Property Name="week_id" Type="int" />
         </EntityType>
         <EntityType Name="employees">
           <Key>
@@ -48,6 +48,13 @@
           <Property Name="product_id" Type="int" />
           <Property Name="quantity" Type="int" />
         </EntityType>
+        <EntityType Name="invoice_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="invoices">
           <Key>
             <PropertyRef Name="id" />
@@ -56,6 +63,7 @@
           <Property Name="employee_id" Type="int" />
           <Property Name="store_id" Type="int" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="int" />
         </EntityType>
         <EntityType Name="ingredients">
           <Key>
@@ -121,6 +129,15 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="shift_time" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="shifts_week">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="week_number" Type="int" />
+          <Property Name="store_id" Type="int" />
+          <Property Name="start_date" Type="datetime2" Precision="7" />
+        </EntityType>
         <EntityType Name="stores">
           <Key>
             <PropertyRef Name="id" />
@@ -163,18 +180,6 @@
             </Principal>
             <Dependent Role="absent_history">
               <PropertyRef Name="shift_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="assign_shifts_ibfk_1">
-          <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
-          <End Role="assign_shifts" Type="Self.assign_shifts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="stores">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="assign_shifts">
-              <PropertyRef Name="store_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -223,6 +228,18 @@
             </Principal>
             <Dependent Role="employees">
               <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_manager">
+          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
+          <End Role="stores" Type="Self.stores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stores">
+              <PropertyRef Name="manager_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -334,6 +351,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="status">
+          <End Role="invoice_status" Type="Self.invoice_status" Multiplicity="0..1" />
+          <End Role="invoices" Type="Self.invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoice_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoices">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="warehouses_ibfk_1">
           <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
           <End Role="warehouses" Type="Self.warehouses" Multiplicity="*" />
@@ -358,11 +387,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="week">
+          <End Role="shifts_week" Type="Self.shifts_week" Multiplicity="0..1" />
+          <End Role="assign_shifts" Type="Self.assign_shifts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shifts_week">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="assign_shifts">
+              <PropertyRef Name="week_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="dacnModelStoreContainer">
           <EntitySet Name="absent_history" EntityType="Self.absent_history" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="assign_shifts" EntityType="Self.assign_shifts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="invoice_detail" EntityType="Self.invoice_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="invoice_status" EntityType="Self.invoice_status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="invoices" EntityType="Self.invoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ingredients" EntityType="Self.ingredients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="product_type" EntityType="Self.product_type" Schema="dbo" store:Type="Tables" />
@@ -372,6 +414,7 @@
           <EntitySet Name="reports" EntityType="Self.reports" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="shifts" EntityType="Self.shifts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shifts_week" EntityType="Self.shifts_week" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="stores" EntityType="Self.stores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="warehouses" EntityType="Self.warehouses" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="absent_history_ibfk_1" Association="Self.absent_history_ibfk_1">
@@ -381,10 +424,6 @@
           <AssociationSet Name="absent_history_ibfk_2" Association="Self.absent_history_ibfk_2">
             <End Role="shifts" EntitySet="shifts" />
             <End Role="absent_history" EntitySet="absent_history" />
-          </AssociationSet>
-          <AssociationSet Name="assign_shifts_ibfk_1" Association="Self.assign_shifts_ibfk_1">
-            <End Role="stores" EntitySet="stores" />
-            <End Role="assign_shifts" EntitySet="assign_shifts" />
           </AssociationSet>
           <AssociationSet Name="assign_shifts_ibfk_2" Association="Self.assign_shifts_ibfk_2">
             <End Role="employees" EntitySet="employees" />
@@ -401,6 +440,10 @@
           <AssociationSet Name="employees_ibfk_2" Association="Self.employees_ibfk_2">
             <End Role="stores" EntitySet="stores" />
             <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_manager" Association="Self.Fk_manager">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="stores" EntitySet="stores" />
           </AssociationSet>
           <AssociationSet Name="invoice_detail_ibfk_1" Association="Self.invoice_detail_ibfk_1">
             <End Role="invoices" EntitySet="invoices" />
@@ -438,6 +481,10 @@
             <End Role="stores" EntitySet="stores" />
             <End Role="reports" EntitySet="reports" />
           </AssociationSet>
+          <AssociationSet Name="status" Association="Self.status">
+            <End Role="invoice_status" EntitySet="invoice_status" />
+            <End Role="invoices" EntitySet="invoices" />
+          </AssociationSet>
           <AssociationSet Name="warehouses_ibfk_1" Association="Self.warehouses_ibfk_1">
             <End Role="stores" EntitySet="stores" />
             <End Role="warehouses" EntitySet="warehouses" />
@@ -445,6 +492,10 @@
           <AssociationSet Name="warehouses_ibfk_2" Association="Self.warehouses_ibfk_2">
             <End Role="ingredients" EntitySet="ingredients" />
             <End Role="warehouses" EntitySet="warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="week" Association="Self.week">
+            <End Role="shifts_week" EntitySet="shifts_week" />
+            <End Role="assign_shifts" EntitySet="assign_shifts" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -473,6 +524,8 @@
           <NavigationProperty Name="stores" Relationship="Self.assign_shifts_ibfk_1" FromRole="assign_shifts" ToRole="stores" />
           <NavigationProperty Name="employees" Relationship="Self.assign_shifts_ibfk_2" FromRole="assign_shifts" ToRole="employees" />
           <NavigationProperty Name="shifts" Relationship="Self.assign_shifts_ibfk_3" FromRole="assign_shifts" ToRole="shifts" />
+          <Property Name="week_id" Type="Int32" />
+          <NavigationProperty Name="shifts_week" Relationship="dacnModel.week" FromRole="assign_shifts" ToRole="shifts_week" />
         </EntityType>
         <EntityType Name="employees">
           <Key>
@@ -494,6 +547,7 @@
           <NavigationProperty Name="roles" Relationship="Self.emp_role" FromRole="employees" ToRole="roles" />
           <NavigationProperty Name="stores" Relationship="Self.employees_ibfk_2" FromRole="employees" ToRole="stores" />
           <NavigationProperty Name="invoices" Relationship="Self.invoices_ibfk_2" FromRole="employees" ToRole="invoices" />
+          <NavigationProperty Name="stores1" Relationship="dacnModel.Fk_manager" FromRole="employees" ToRole="stores" />
         </EntityType>
         <EntityType Name="invoice_detail">
           <Key>
@@ -517,6 +571,8 @@
           <NavigationProperty Name="employees" Relationship="Self.invoices_ibfk_2" FromRole="invoices" ToRole="employees" />
           <NavigationProperty Name="invoice_detail" Relationship="Self.invoice_detail_ibfk_1" FromRole="invoices" ToRole="invoice_detail" />
           <NavigationProperty Name="stores" Relationship="Self.invoices_ibfk_1" FromRole="invoices" ToRole="stores" />
+          <Property Name="status" Type="Int32" />
+          <NavigationProperty Name="invoice_status" Relationship="dacnModel.status" FromRole="invoices" ToRole="invoice_status" />
         </EntityType>
         <EntityType Name="ingredients">
           <Key>
@@ -612,6 +668,7 @@
           <NavigationProperty Name="invoices" Relationship="Self.invoices_ibfk_1" FromRole="stores" ToRole="invoices" />
           <NavigationProperty Name="reports" Relationship="Self.reports_ibfk_1" FromRole="stores" ToRole="reports" />
           <NavigationProperty Name="warehouses" Relationship="Self.warehouses_ibfk_1" FromRole="stores" ToRole="warehouses" />
+          <NavigationProperty Name="employees1" Relationship="dacnModel.Fk_manager" FromRole="stores" ToRole="employees" />
         </EntityType>
         <EntityType Name="warehouses">
           <Key>
@@ -928,7 +985,75 @@
             <End Role="stores" EntitySet="stores" />
             <End Role="warehouses" EntitySet="warehouses" />
           </AssociationSet>
+          <EntitySet Name="invoice_status" EntityType="dacnModel.invoice_status" />
+          <EntitySet Name="shifts_week" EntityType="dacnModel.shifts_week" />
+          <AssociationSet Name="week" Association="dacnModel.week">
+            <End Role="shifts_week" EntitySet="shifts_week" />
+            <End Role="assign_shifts" EntitySet="assign_shifts" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_manager" Association="dacnModel.Fk_manager">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="stores" EntitySet="stores" />
+          </AssociationSet>
+          <AssociationSet Name="status" Association="dacnModel.status">
+            <End Role="invoice_status" EntitySet="invoice_status" />
+            <End Role="invoices" EntitySet="invoices" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="invoice_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="invoices" Relationship="dacnModel.status" FromRole="invoice_status" ToRole="invoices" />
+        </EntityType>
+        <EntityType Name="shifts_week">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="week_number" Type="Int32" />
+          <Property Name="store_id" Type="Int32" />
+          <Property Name="start_date" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="assign_shifts" Relationship="dacnModel.week" FromRole="shifts_week" ToRole="assign_shifts" />
+        </EntityType>
+        <Association Name="week">
+          <End Type="dacnModel.shifts_week" Role="shifts_week" Multiplicity="0..1" />
+          <End Type="dacnModel.assign_shifts" Role="assign_shifts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shifts_week">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="assign_shifts">
+              <PropertyRef Name="week_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_manager">
+          <End Type="dacnModel.employees" Role="employees" Multiplicity="0..1" />
+          <End Type="dacnModel.stores" Role="stores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="stores">
+              <PropertyRef Name="manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="status">
+          <End Type="dacnModel.invoice_status" Role="invoice_status" Multiplicity="0..1" />
+          <End Type="dacnModel.invoices" Role="invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoice_status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoices">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -948,8 +1073,8 @@
           <EntitySetMapping Name="assign_shifts">
             <EntityTypeMapping TypeName="dacnModel.assign_shifts">
               <MappingFragment StoreEntitySet="assign_shifts">
+                <ScalarProperty Name="week_id" ColumnName="week_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="store_id" ColumnName="store_id" />
                 <ScalarProperty Name="employee_id" ColumnName="employee_id" />
                 <ScalarProperty Name="shift_id" ColumnName="shift_id" />
               </MappingFragment>
@@ -985,6 +1110,7 @@
           <EntitySetMapping Name="invoices">
             <EntityTypeMapping TypeName="dacnModel.invoices">
               <MappingFragment StoreEntitySet="invoices">
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="employee_id" ColumnName="employee_id" />
                 <ScalarProperty Name="store_id" ColumnName="store_id" />
@@ -1084,6 +1210,24 @@
                 <ScalarProperty Name="store_id" ColumnName="store_id" />
                 <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
                 <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invoice_status">
+            <EntityTypeMapping TypeName="dacnModel.invoice_status">
+              <MappingFragment StoreEntitySet="invoice_status">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shifts_week">
+            <EntityTypeMapping TypeName="dacnModel.shifts_week">
+              <MappingFragment StoreEntitySet="shifts_week">
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+                <ScalarProperty Name="week_number" ColumnName="week_number" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

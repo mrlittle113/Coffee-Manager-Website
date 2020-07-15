@@ -20,6 +20,7 @@ namespace CoffeeShops.Models
             this.absent_history = new HashSet<absent_history>();
             this.assign_shifts = new HashSet<assign_shifts>();
             this.invoices = new HashSet<invoices>();
+            this.stores1 = new HashSet<stores>();
         }
     
         public int id { get; set; }
@@ -42,5 +43,7 @@ namespace CoffeeShops.Models
         public virtual stores stores { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<invoices> invoices { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<stores> stores1 { get; set; }
     }
 }

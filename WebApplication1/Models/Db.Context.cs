@@ -40,5 +40,7 @@ namespace CoffeeShops.Models
         public virtual DbSet<shifts> shifts { get; set; }
         public virtual DbSet<stores> stores { get; set; }
         public virtual DbSet<warehouses> warehouses { get; set; }
+        public virtual DbSet<invoice_status> invoice_status { get; set; }
+        public virtual DbSet<shifts_week> shifts_week { get; set; }
     }
 }

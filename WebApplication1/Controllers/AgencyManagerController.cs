@@ -17,5 +17,9 @@ namespace WebApplication1.Controllers
         {
             return View("ShiftManagement");
         }
+        public ActionResult StorageManagement()
+        {
+            return View("StorageManagement");
+        }
     }
 }
