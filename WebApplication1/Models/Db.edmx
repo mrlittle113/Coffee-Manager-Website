@@ -502,6 +502,105 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dacnModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dacnEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="absent_history" EntityType="dacnModel.absent_history" />
+          <EntitySet Name="assign_shifts" EntityType="dacnModel.assign_shifts" />
+          <EntitySet Name="employees" EntityType="dacnModel.employees" />
+          <EntitySet Name="invoice_detail" EntityType="dacnModel.invoice_detail" />
+          <EntitySet Name="invoice_status" EntityType="dacnModel.invoice_status" />
+          <EntitySet Name="invoices" EntityType="dacnModel.invoices" />
+          <EntitySet Name="ingredients" EntityType="dacnModel.ingredients" />
+          <EntitySet Name="product_type" EntityType="dacnModel.product_type" />
+          <EntitySet Name="products" EntityType="dacnModel.products" />
+          <EntitySet Name="recipe_ingredients" EntityType="dacnModel.recipe_ingredients" />
+          <EntitySet Name="report_detail" EntityType="dacnModel.report_detail" />
+          <EntitySet Name="reports" EntityType="dacnModel.reports" />
+          <EntitySet Name="roles" EntityType="dacnModel.roles" />
+          <EntitySet Name="shifts" EntityType="dacnModel.shifts" />
+          <EntitySet Name="shifts_week" EntityType="dacnModel.shifts_week" />
+          <EntitySet Name="stores" EntityType="dacnModel.stores" />
+          <EntitySet Name="warehouses" EntityType="dacnModel.warehouses" />
+          <AssociationSet Name="absent_history_ibfk_1" Association="dacnModel.absent_history_ibfk_1">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="absent_history" EntitySet="absent_history" />
+          </AssociationSet>
+          <AssociationSet Name="absent_history_ibfk_2" Association="dacnModel.absent_history_ibfk_2">
+            <End Role="shifts" EntitySet="shifts" />
+            <End Role="absent_history" EntitySet="absent_history" />
+          </AssociationSet>
+          <AssociationSet Name="assign_shifts_ibfk_2" Association="dacnModel.assign_shifts_ibfk_2">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="assign_shifts" EntitySet="assign_shifts" />
+          </AssociationSet>
+          <AssociationSet Name="assign_shifts_ibfk_3" Association="dacnModel.assign_shifts_ibfk_3">
+            <End Role="shifts" EntitySet="shifts" />
+            <End Role="assign_shifts" EntitySet="assign_shifts" />
+          </AssociationSet>
+          <AssociationSet Name="week" Association="dacnModel.week">
+            <End Role="shifts_week" EntitySet="shifts_week" />
+            <End Role="assign_shifts" EntitySet="assign_shifts" />
+          </AssociationSet>
+          <AssociationSet Name="emp_role" Association="dacnModel.emp_role">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="employees_ibfk_2" Association="dacnModel.employees_ibfk_2">
+            <End Role="stores" EntitySet="stores" />
+            <End Role="employees" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_manager" Association="dacnModel.Fk_manager">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="stores" EntitySet="stores" />
+          </AssociationSet>
+          <AssociationSet Name="invoices_ibfk_2" Association="dacnModel.invoices_ibfk_2">
+            <End Role="employees" EntitySet="employees" />
+            <End Role="invoices" EntitySet="invoices" />
+          </AssociationSet>
+          <AssociationSet Name="invoice_detail_ibfk_1" Association="dacnModel.invoice_detail_ibfk_1">
+            <End Role="invoices" EntitySet="invoices" />
+            <End Role="invoice_detail" EntitySet="invoice_detail" />
+          </AssociationSet>
+          <AssociationSet Name="invoice_detail_ibfk_2" Association="dacnModel.invoice_detail_ibfk_2">
+            <End Role="products" EntitySet="products" />
+            <End Role="invoice_detail" EntitySet="invoice_detail" />
+          </AssociationSet>
+          <AssociationSet Name="status" Association="dacnModel.status">
+            <End Role="invoice_status" EntitySet="invoice_status" />
+            <End Role="invoices" EntitySet="invoices" />
+          </AssociationSet>
+          <AssociationSet Name="invoices_ibfk_1" Association="dacnModel.invoices_ibfk_1">
+            <End Role="stores" EntitySet="stores" />
+            <End Role="invoices" EntitySet="invoices" />
+          </AssociationSet>
+          <AssociationSet Name="recipe_ingredients_ibfk_2" Association="dacnModel.recipe_ingredients_ibfk_2">
+            <End Role="ingredients" EntitySet="ingredients" />
+            <End Role="recipe_ingredients" EntitySet="recipe_ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="warehouses_ibfk_2" Association="dacnModel.warehouses_ibfk_2">
+            <End Role="ingredients" EntitySet="ingredients" />
+            <End Role="warehouses" EntitySet="warehouses" />
+          </AssociationSet>
+          <AssociationSet Name="products_ibfk_1" Association="dacnModel.products_ibfk_1">
+            <End Role="product_type" EntitySet="product_type" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="recipe_ingredients_ibfk_1" Association="dacnModel.recipe_ingredients_ibfk_1">
+            <End Role="products" EntitySet="products" />
+            <End Role="recipe_ingredients" EntitySet="recipe_ingredients" />
+          </AssociationSet>
+          <AssociationSet Name="report_detail_ibfk_1" Association="dacnModel.report_detail_ibfk_1">
+            <End Role="reports" EntitySet="reports" />
+            <End Role="report_detail" EntitySet="report_detail" />
+          </AssociationSet>
+          <AssociationSet Name="reports_ibfk_1" Association="dacnModel.reports_ibfk_1">
+            <End Role="stores" EntitySet="stores" />
+            <End Role="reports" EntitySet="reports" />
+          </AssociationSet>
+          <AssociationSet Name="warehouses_ibfk_1" Association="dacnModel.warehouses_ibfk_1">
+            <End Role="stores" EntitySet="stores" />
+            <End Role="warehouses" EntitySet="warehouses" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="absent_history">
           <Key>
             <PropertyRef Name="id" />
@@ -510,21 +609,19 @@
           <Property Name="employee_id" Type="Int32" />
           <Property Name="shift_id" Type="Int32" />
           <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="employees" Relationship="Self.absent_history_ibfk_1" FromRole="absent_history" ToRole="employees" />
-          <NavigationProperty Name="shifts" Relationship="Self.absent_history_ibfk_2" FromRole="absent_history" ToRole="shifts" />
+          <NavigationProperty Name="employees" Relationship="dacnModel.absent_history_ibfk_1" FromRole="absent_history" ToRole="employees" />
+          <NavigationProperty Name="shifts" Relationship="dacnModel.absent_history_ibfk_2" FromRole="absent_history" ToRole="shifts" />
         </EntityType>
         <EntityType Name="assign_shifts">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="store_id" Type="Int32" />
           <Property Name="employee_id" Type="Int32" />
           <Property Name="shift_id" Type="Int32" />
-          <NavigationProperty Name="stores" Relationship="Self.assign_shifts_ibfk_1" FromRole="assign_shifts" ToRole="stores" />
-          <NavigationProperty Name="employees" Relationship="Self.assign_shifts_ibfk_2" FromRole="assign_shifts" ToRole="employees" />
-          <NavigationProperty Name="shifts" Relationship="Self.assign_shifts_ibfk_3" FromRole="assign_shifts" ToRole="shifts" />
           <Property Name="week_id" Type="Int32" />
+          <NavigationProperty Name="employees" Relationship="dacnModel.assign_shifts_ibfk_2" FromRole="assign_shifts" ToRole="employees" />
+          <NavigationProperty Name="shifts" Relationship="dacnModel.assign_shifts_ibfk_3" FromRole="assign_shifts" ToRole="shifts" />
           <NavigationProperty Name="shifts_week" Relationship="dacnModel.week" FromRole="assign_shifts" ToRole="shifts_week" />
         </EntityType>
         <EntityType Name="employees">
@@ -542,12 +639,12 @@
           <Property Name="salary_rate" Type="Int32" />
           <Property Name="store_id" Type="Int32" />
           <Property Name="joined_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="absent_history" Relationship="Self.absent_history_ibfk_1" FromRole="employees" ToRole="absent_history" />
-          <NavigationProperty Name="assign_shifts" Relationship="Self.assign_shifts_ibfk_2" FromRole="employees" ToRole="assign_shifts" />
-          <NavigationProperty Name="roles" Relationship="Self.emp_role" FromRole="employees" ToRole="roles" />
-          <NavigationProperty Name="stores" Relationship="Self.employees_ibfk_2" FromRole="employees" ToRole="stores" />
-          <NavigationProperty Name="invoices" Relationship="Self.invoices_ibfk_2" FromRole="employees" ToRole="invoices" />
+          <NavigationProperty Name="absent_history" Relationship="dacnModel.absent_history_ibfk_1" FromRole="employees" ToRole="absent_history" />
+          <NavigationProperty Name="assign_shifts" Relationship="dacnModel.assign_shifts_ibfk_2" FromRole="employees" ToRole="assign_shifts" />
+          <NavigationProperty Name="roles" Relationship="dacnModel.emp_role" FromRole="employees" ToRole="roles" />
+          <NavigationProperty Name="stores" Relationship="dacnModel.employees_ibfk_2" FromRole="employees" ToRole="stores" />
           <NavigationProperty Name="stores1" Relationship="dacnModel.Fk_manager" FromRole="employees" ToRole="stores" />
+          <NavigationProperty Name="invoices" Relationship="dacnModel.invoices_ibfk_2" FromRole="employees" ToRole="invoices" />
         </EntityType>
         <EntityType Name="invoice_detail">
           <Key>
@@ -557,8 +654,16 @@
           <Property Name="invoice_id" Type="Int32" />
           <Property Name="product_id" Type="Int32" />
           <Property Name="quantity" Type="Int32" />
-          <NavigationProperty Name="invoices" Relationship="Self.invoice_detail_ibfk_1" FromRole="invoice_detail" ToRole="invoices" />
-          <NavigationProperty Name="products" Relationship="Self.invoice_detail_ibfk_2" FromRole="invoice_detail" ToRole="products" />
+          <NavigationProperty Name="invoices" Relationship="dacnModel.invoice_detail_ibfk_1" FromRole="invoice_detail" ToRole="invoices" />
+          <NavigationProperty Name="products" Relationship="dacnModel.invoice_detail_ibfk_2" FromRole="invoice_detail" ToRole="products" />
+        </EntityType>
+        <EntityType Name="invoice_status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="invoices" Relationship="dacnModel.status" FromRole="invoice_status" ToRole="invoices" />
         </EntityType>
         <EntityType Name="invoices">
           <Key>
@@ -568,11 +673,11 @@
           <Property Name="employee_id" Type="Int32" />
           <Property Name="store_id" Type="Int32" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="employees" Relationship="Self.invoices_ibfk_2" FromRole="invoices" ToRole="employees" />
-          <NavigationProperty Name="invoice_detail" Relationship="Self.invoice_detail_ibfk_1" FromRole="invoices" ToRole="invoice_detail" />
-          <NavigationProperty Name="stores" Relationship="Self.invoices_ibfk_1" FromRole="invoices" ToRole="stores" />
           <Property Name="status" Type="Int32" />
+          <NavigationProperty Name="employees" Relationship="dacnModel.invoices_ibfk_2" FromRole="invoices" ToRole="employees" />
+          <NavigationProperty Name="invoice_detail" Relationship="dacnModel.invoice_detail_ibfk_1" FromRole="invoices" ToRole="invoice_detail" />
           <NavigationProperty Name="invoice_status" Relationship="dacnModel.status" FromRole="invoices" ToRole="invoice_status" />
+          <NavigationProperty Name="stores" Relationship="dacnModel.invoices_ibfk_1" FromRole="invoices" ToRole="stores" />
         </EntityType>
         <EntityType Name="ingredients">
           <Key>
@@ -580,8 +685,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="recipe_ingredients" Relationship="Self.recipe_ingredients_ibfk_2" FromRole="ingredients" ToRole="recipe_ingredients" />
-          <NavigationProperty Name="warehouses" Relationship="Self.warehouses_ibfk_2" FromRole="ingredients" ToRole="warehouses" />
+          <NavigationProperty Name="recipe_ingredients" Relationship="dacnModel.recipe_ingredients_ibfk_2" FromRole="ingredients" ToRole="recipe_ingredients" />
+          <NavigationProperty Name="warehouses" Relationship="dacnModel.warehouses_ibfk_2" FromRole="ingredients" ToRole="warehouses" />
         </EntityType>
         <EntityType Name="product_type">
           <Key>
@@ -589,7 +694,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="products" Relationship="Self.products_ibfk_1" FromRole="product_type" ToRole="products" />
+          <NavigationProperty Name="products" Relationship="dacnModel.products_ibfk_1" FromRole="product_type" ToRole="products" />
         </EntityType>
         <EntityType Name="products">
           <Key>
@@ -600,9 +705,9 @@
           <Property Name="formular" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Int32" />
           <Property Name="type_id" Type="Int32" />
-          <NavigationProperty Name="invoice_detail" Relationship="Self.invoice_detail_ibfk_2" FromRole="products" ToRole="invoice_detail" />
-          <NavigationProperty Name="product_type" Relationship="Self.products_ibfk_1" FromRole="products" ToRole="product_type" />
-          <NavigationProperty Name="recipe_ingredients" Relationship="Self.recipe_ingredients_ibfk_1" FromRole="products" ToRole="recipe_ingredients" />
+          <NavigationProperty Name="invoice_detail" Relationship="dacnModel.invoice_detail_ibfk_2" FromRole="products" ToRole="invoice_detail" />
+          <NavigationProperty Name="product_type" Relationship="dacnModel.products_ibfk_1" FromRole="products" ToRole="product_type" />
+          <NavigationProperty Name="recipe_ingredients" Relationship="dacnModel.recipe_ingredients_ibfk_1" FromRole="products" ToRole="recipe_ingredients" />
         </EntityType>
         <EntityType Name="recipe_ingredients">
           <Key>
@@ -612,8 +717,8 @@
           <Property Name="product_id" Type="Int32" />
           <Property Name="ingredient_id" Type="Int32" />
           <Property Name="quantity" Type="Int32" />
-          <NavigationProperty Name="ingredients" Relationship="Self.recipe_ingredients_ibfk_2" FromRole="recipe_ingredients" ToRole="ingredients" />
-          <NavigationProperty Name="products" Relationship="Self.recipe_ingredients_ibfk_1" FromRole="recipe_ingredients" ToRole="products" />
+          <NavigationProperty Name="ingredients" Relationship="dacnModel.recipe_ingredients_ibfk_2" FromRole="recipe_ingredients" ToRole="ingredients" />
+          <NavigationProperty Name="products" Relationship="dacnModel.recipe_ingredients_ibfk_1" FromRole="recipe_ingredients" ToRole="products" />
         </EntityType>
         <EntityType Name="report_detail">
           <Key>
@@ -623,7 +728,7 @@
           <Property Name="report_id" Type="Int32" />
           <Property Name="reason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="price" Type="Int32" />
-          <NavigationProperty Name="reports" Relationship="Self.report_detail_ibfk_1" FromRole="report_detail" ToRole="reports" />
+          <NavigationProperty Name="reports" Relationship="dacnModel.report_detail_ibfk_1" FromRole="report_detail" ToRole="reports" />
         </EntityType>
         <EntityType Name="reports">
           <Key>
@@ -632,8 +737,8 @@
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="store_id" Type="Int32" />
           <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="report_detail" Relationship="Self.report_detail_ibfk_1" FromRole="reports" ToRole="report_detail" />
-          <NavigationProperty Name="stores" Relationship="Self.reports_ibfk_1" FromRole="reports" ToRole="stores" />
+          <NavigationProperty Name="report_detail" Relationship="dacnModel.report_detail_ibfk_1" FromRole="reports" ToRole="report_detail" />
+          <NavigationProperty Name="stores" Relationship="dacnModel.reports_ibfk_1" FromRole="reports" ToRole="stores" />
         </EntityType>
         <EntityType Name="roles">
           <Key>
@@ -641,7 +746,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="role_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="employees" Relationship="Self.emp_role" FromRole="roles" ToRole="employees" />
+          <NavigationProperty Name="employees" Relationship="dacnModel.emp_role" FromRole="roles" ToRole="employees" />
         </EntityType>
         <EntityType Name="shifts">
           <Key>
@@ -649,8 +754,18 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="shift_time" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="absent_history" Relationship="Self.absent_history_ibfk_2" FromRole="shifts" ToRole="absent_history" />
-          <NavigationProperty Name="assign_shifts" Relationship="Self.assign_shifts_ibfk_3" FromRole="shifts" ToRole="assign_shifts" />
+          <NavigationProperty Name="absent_history" Relationship="dacnModel.absent_history_ibfk_2" FromRole="shifts" ToRole="absent_history" />
+          <NavigationProperty Name="assign_shifts" Relationship="dacnModel.assign_shifts_ibfk_3" FromRole="shifts" ToRole="assign_shifts" />
+        </EntityType>
+        <EntityType Name="shifts_week">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="week_number" Type="Int32" />
+          <Property Name="store_id" Type="Int32" />
+          <Property Name="start_date" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="assign_shifts" Relationship="dacnModel.week" FromRole="shifts_week" ToRole="assign_shifts" />
         </EntityType>
         <EntityType Name="stores">
           <Key>
@@ -663,12 +778,11 @@
           <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="manager_id" Type="Int32" />
           <Property Name="created_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="assign_shifts" Relationship="Self.assign_shifts_ibfk_1" FromRole="stores" ToRole="assign_shifts" />
-          <NavigationProperty Name="employees" Relationship="Self.employees_ibfk_2" FromRole="stores" ToRole="employees" />
-          <NavigationProperty Name="invoices" Relationship="Self.invoices_ibfk_1" FromRole="stores" ToRole="invoices" />
-          <NavigationProperty Name="reports" Relationship="Self.reports_ibfk_1" FromRole="stores" ToRole="reports" />
-          <NavigationProperty Name="warehouses" Relationship="Self.warehouses_ibfk_1" FromRole="stores" ToRole="warehouses" />
+          <NavigationProperty Name="employees" Relationship="dacnModel.employees_ibfk_2" FromRole="stores" ToRole="employees" />
           <NavigationProperty Name="employees1" Relationship="dacnModel.Fk_manager" FromRole="stores" ToRole="employees" />
+          <NavigationProperty Name="invoices" Relationship="dacnModel.invoices_ibfk_1" FromRole="stores" ToRole="invoices" />
+          <NavigationProperty Name="reports" Relationship="dacnModel.reports_ibfk_1" FromRole="stores" ToRole="reports" />
+          <NavigationProperty Name="warehouses" Relationship="dacnModel.warehouses_ibfk_1" FromRole="stores" ToRole="warehouses" />
         </EntityType>
         <EntityType Name="warehouses">
           <Key>
@@ -678,12 +792,12 @@
           <Property Name="store_id" Type="Int32" />
           <Property Name="ingredient_id" Type="Int32" />
           <Property Name="quantity" Type="Int32" />
-          <NavigationProperty Name="ingredients" Relationship="Self.warehouses_ibfk_2" FromRole="warehouses" ToRole="ingredients" />
-          <NavigationProperty Name="stores" Relationship="Self.warehouses_ibfk_1" FromRole="warehouses" ToRole="stores" />
+          <NavigationProperty Name="ingredients" Relationship="dacnModel.warehouses_ibfk_2" FromRole="warehouses" ToRole="ingredients" />
+          <NavigationProperty Name="stores" Relationship="dacnModel.warehouses_ibfk_1" FromRole="warehouses" ToRole="stores" />
         </EntityType>
         <Association Name="absent_history_ibfk_1">
-          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
-          <End Role="absent_history" Type="Self.absent_history" Multiplicity="*" />
+          <End Type="dacnModel.employees" Role="employees" Multiplicity="0..1" />
+          <End Type="dacnModel.absent_history" Role="absent_history" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="employees">
               <PropertyRef Name="id" />
@@ -694,8 +808,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="absent_history_ibfk_2">
-          <End Role="shifts" Type="Self.shifts" Multiplicity="0..1" />
-          <End Role="absent_history" Type="Self.absent_history" Multiplicity="*" />
+          <End Type="dacnModel.shifts" Role="shifts" Multiplicity="0..1" />
+          <End Type="dacnModel.absent_history" Role="absent_history" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shifts">
               <PropertyRef Name="id" />
@@ -705,21 +819,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="assign_shifts_ibfk_1">
-          <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
-          <End Role="assign_shifts" Type="Self.assign_shifts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="stores">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="assign_shifts">
-              <PropertyRef Name="store_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="assign_shifts_ibfk_2">
-          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
-          <End Role="assign_shifts" Type="Self.assign_shifts" Multiplicity="*" />
+          <End Type="dacnModel.employees" Role="employees" Multiplicity="0..1" />
+          <End Type="dacnModel.assign_shifts" Role="assign_shifts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="employees">
               <PropertyRef Name="id" />
@@ -730,8 +832,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="assign_shifts_ibfk_3">
-          <End Role="shifts" Type="Self.shifts" Multiplicity="0..1" />
-          <End Role="assign_shifts" Type="Self.assign_shifts" Multiplicity="*" />
+          <End Type="dacnModel.shifts" Role="shifts" Multiplicity="0..1" />
+          <End Type="dacnModel.assign_shifts" Role="assign_shifts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="shifts">
               <PropertyRef Name="id" />
@@ -741,9 +843,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="week">
+          <End Type="dacnModel.shifts_week" Role="shifts_week" Multiplicity="0..1" />
+          <End Type="dacnModel.assign_shifts" Role="assign_shifts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shifts_week">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="assign_shifts">
+              <PropertyRef Name="week_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="emp_role">
-          <End Role="roles" Type="Self.roles" Multiplicity="0..1" />
-          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <End Type="dacnModel.roles" Role="roles" Multiplicity="0..1" />
+          <End Type="dacnModel.employees" Role="employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="roles">
               <PropertyRef Name="id" />
@@ -754,279 +868,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="employees_ibfk_2">
-          <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
-          <End Role="employees" Type="Self.employees" Multiplicity="*" />
+          <End Type="dacnModel.stores" Role="stores" Multiplicity="0..1" />
+          <End Type="dacnModel.employees" Role="employees" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="stores">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="employees">
               <PropertyRef Name="store_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="invoices_ibfk_2">
-          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
-          <End Role="invoices" Type="Self.invoices" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="employees">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="invoices">
-              <PropertyRef Name="employee_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="invoice_detail_ibfk_1">
-          <End Role="invoices" Type="Self.invoices" Multiplicity="0..1" />
-          <End Role="invoice_detail" Type="Self.invoice_detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="invoices">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="invoice_detail">
-              <PropertyRef Name="invoice_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="invoice_detail_ibfk_2">
-          <End Role="products" Type="Self.products" Multiplicity="0..1" />
-          <End Role="invoice_detail" Type="Self.invoice_detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="products">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="invoice_detail">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="invoices_ibfk_1">
-          <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
-          <End Role="invoices" Type="Self.invoices" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="stores">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="invoices">
-              <PropertyRef Name="store_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="recipe_ingredients_ibfk_2">
-          <End Role="ingredients" Type="Self.ingredients" Multiplicity="0..1" />
-          <End Role="recipe_ingredients" Type="Self.recipe_ingredients" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ingredients">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="recipe_ingredients">
-              <PropertyRef Name="ingredient_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="warehouses_ibfk_2">
-          <End Role="ingredients" Type="Self.ingredients" Multiplicity="0..1" />
-          <End Role="warehouses" Type="Self.warehouses" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ingredients">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="warehouses">
-              <PropertyRef Name="ingredient_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="products_ibfk_1">
-          <End Role="product_type" Type="Self.product_type" Multiplicity="0..1" />
-          <End Role="products" Type="Self.products" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="product_type">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="products">
-              <PropertyRef Name="type_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="recipe_ingredients_ibfk_1">
-          <End Role="products" Type="Self.products" Multiplicity="0..1" />
-          <End Role="recipe_ingredients" Type="Self.recipe_ingredients" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="products">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="recipe_ingredients">
-              <PropertyRef Name="product_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="report_detail_ibfk_1">
-          <End Role="reports" Type="Self.reports" Multiplicity="0..1" />
-          <End Role="report_detail" Type="Self.report_detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="reports">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="report_detail">
-              <PropertyRef Name="report_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="reports_ibfk_1">
-          <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
-          <End Role="reports" Type="Self.reports" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="stores">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="reports">
-              <PropertyRef Name="store_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="warehouses_ibfk_1">
-          <End Role="stores" Type="Self.stores" Multiplicity="0..1" />
-          <End Role="warehouses" Type="Self.warehouses" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="stores">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="warehouses">
-              <PropertyRef Name="store_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="dacnEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="absent_history" EntityType="Self.absent_history" />
-          <EntitySet Name="assign_shifts" EntityType="Self.assign_shifts" />
-          <EntitySet Name="employees" EntityType="Self.employees" />
-          <EntitySet Name="invoice_detail" EntityType="Self.invoice_detail" />
-          <EntitySet Name="invoices" EntityType="Self.invoices" />
-          <EntitySet Name="ingredients" EntityType="Self.ingredients" />
-          <EntitySet Name="product_type" EntityType="Self.product_type" />
-          <EntitySet Name="products" EntityType="Self.products" />
-          <EntitySet Name="recipe_ingredients" EntityType="Self.recipe_ingredients" />
-          <EntitySet Name="report_detail" EntityType="Self.report_detail" />
-          <EntitySet Name="reports" EntityType="Self.reports" />
-          <EntitySet Name="roles" EntityType="Self.roles" />
-          <EntitySet Name="shifts" EntityType="Self.shifts" />
-          <EntitySet Name="stores" EntityType="Self.stores" />
-          <EntitySet Name="warehouses" EntityType="Self.warehouses" />
-          <AssociationSet Name="absent_history_ibfk_1" Association="Self.absent_history_ibfk_1">
-            <End Role="employees" EntitySet="employees" />
-            <End Role="absent_history" EntitySet="absent_history" />
-          </AssociationSet>
-          <AssociationSet Name="absent_history_ibfk_2" Association="Self.absent_history_ibfk_2">
-            <End Role="shifts" EntitySet="shifts" />
-            <End Role="absent_history" EntitySet="absent_history" />
-          </AssociationSet>
-          <AssociationSet Name="assign_shifts_ibfk_1" Association="Self.assign_shifts_ibfk_1">
-            <End Role="stores" EntitySet="stores" />
-            <End Role="assign_shifts" EntitySet="assign_shifts" />
-          </AssociationSet>
-          <AssociationSet Name="assign_shifts_ibfk_2" Association="Self.assign_shifts_ibfk_2">
-            <End Role="employees" EntitySet="employees" />
-            <End Role="assign_shifts" EntitySet="assign_shifts" />
-          </AssociationSet>
-          <AssociationSet Name="assign_shifts_ibfk_3" Association="Self.assign_shifts_ibfk_3">
-            <End Role="shifts" EntitySet="shifts" />
-            <End Role="assign_shifts" EntitySet="assign_shifts" />
-          </AssociationSet>
-          <AssociationSet Name="emp_role" Association="Self.emp_role">
-            <End Role="roles" EntitySet="roles" />
-            <End Role="employees" EntitySet="employees" />
-          </AssociationSet>
-          <AssociationSet Name="employees_ibfk_2" Association="Self.employees_ibfk_2">
-            <End Role="stores" EntitySet="stores" />
-            <End Role="employees" EntitySet="employees" />
-          </AssociationSet>
-          <AssociationSet Name="invoices_ibfk_2" Association="Self.invoices_ibfk_2">
-            <End Role="employees" EntitySet="employees" />
-            <End Role="invoices" EntitySet="invoices" />
-          </AssociationSet>
-          <AssociationSet Name="invoice_detail_ibfk_1" Association="Self.invoice_detail_ibfk_1">
-            <End Role="invoices" EntitySet="invoices" />
-            <End Role="invoice_detail" EntitySet="invoice_detail" />
-          </AssociationSet>
-          <AssociationSet Name="invoice_detail_ibfk_2" Association="Self.invoice_detail_ibfk_2">
-            <End Role="products" EntitySet="products" />
-            <End Role="invoice_detail" EntitySet="invoice_detail" />
-          </AssociationSet>
-          <AssociationSet Name="invoices_ibfk_1" Association="Self.invoices_ibfk_1">
-            <End Role="stores" EntitySet="stores" />
-            <End Role="invoices" EntitySet="invoices" />
-          </AssociationSet>
-          <AssociationSet Name="recipe_ingredients_ibfk_2" Association="Self.recipe_ingredients_ibfk_2">
-            <End Role="ingredients" EntitySet="ingredients" />
-            <End Role="recipe_ingredients" EntitySet="recipe_ingredients" />
-          </AssociationSet>
-          <AssociationSet Name="warehouses_ibfk_2" Association="Self.warehouses_ibfk_2">
-            <End Role="ingredients" EntitySet="ingredients" />
-            <End Role="warehouses" EntitySet="warehouses" />
-          </AssociationSet>
-          <AssociationSet Name="products_ibfk_1" Association="Self.products_ibfk_1">
-            <End Role="product_type" EntitySet="product_type" />
-            <End Role="products" EntitySet="products" />
-          </AssociationSet>
-          <AssociationSet Name="recipe_ingredients_ibfk_1" Association="Self.recipe_ingredients_ibfk_1">
-            <End Role="products" EntitySet="products" />
-            <End Role="recipe_ingredients" EntitySet="recipe_ingredients" />
-          </AssociationSet>
-          <AssociationSet Name="report_detail_ibfk_1" Association="Self.report_detail_ibfk_1">
-            <End Role="reports" EntitySet="reports" />
-            <End Role="report_detail" EntitySet="report_detail" />
-          </AssociationSet>
-          <AssociationSet Name="reports_ibfk_1" Association="Self.reports_ibfk_1">
-            <End Role="stores" EntitySet="stores" />
-            <End Role="reports" EntitySet="reports" />
-          </AssociationSet>
-          <AssociationSet Name="warehouses_ibfk_1" Association="Self.warehouses_ibfk_1">
-            <End Role="stores" EntitySet="stores" />
-            <End Role="warehouses" EntitySet="warehouses" />
-          </AssociationSet>
-          <EntitySet Name="invoice_status" EntityType="dacnModel.invoice_status" />
-          <EntitySet Name="shifts_week" EntityType="dacnModel.shifts_week" />
-          <AssociationSet Name="week" Association="dacnModel.week">
-            <End Role="shifts_week" EntitySet="shifts_week" />
-            <End Role="assign_shifts" EntitySet="assign_shifts" />
-          </AssociationSet>
-          <AssociationSet Name="Fk_manager" Association="dacnModel.Fk_manager">
-            <End Role="employees" EntitySet="employees" />
-            <End Role="stores" EntitySet="stores" />
-          </AssociationSet>
-          <AssociationSet Name="status" Association="dacnModel.status">
-            <End Role="invoice_status" EntitySet="invoice_status" />
-            <End Role="invoices" EntitySet="invoices" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="invoice_status">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="invoices" Relationship="dacnModel.status" FromRole="invoice_status" ToRole="invoices" />
-        </EntityType>
-        <EntityType Name="shifts_week">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="week_number" Type="Int32" />
-          <Property Name="store_id" Type="Int32" />
-          <Property Name="start_date" Type="DateTime" Precision="7" />
-          <NavigationProperty Name="assign_shifts" Relationship="dacnModel.week" FromRole="shifts_week" ToRole="assign_shifts" />
-        </EntityType>
-        <Association Name="week">
-          <End Type="dacnModel.shifts_week" Role="shifts_week" Multiplicity="0..1" />
-          <End Type="dacnModel.assign_shifts" Role="assign_shifts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="shifts_week">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="assign_shifts">
-              <PropertyRef Name="week_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1042,6 +891,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="invoices_ibfk_2">
+          <End Type="dacnModel.employees" Role="employees" Multiplicity="0..1" />
+          <End Type="dacnModel.invoices" Role="invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employees">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoices">
+              <PropertyRef Name="employee_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="invoice_detail_ibfk_1">
+          <End Type="dacnModel.invoices" Role="invoices" Multiplicity="0..1" />
+          <End Type="dacnModel.invoice_detail" Role="invoice_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="invoices">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice_detail">
+              <PropertyRef Name="invoice_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="invoice_detail_ibfk_2">
+          <End Type="dacnModel.products" Role="products" Multiplicity="0..1" />
+          <End Type="dacnModel.invoice_detail" Role="invoice_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoice_detail">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="status">
           <End Type="dacnModel.invoice_status" Role="invoice_status" Multiplicity="0..1" />
           <End Type="dacnModel.invoices" Role="invoices" Multiplicity="*" />
@@ -1054,6 +939,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="invoices_ibfk_1">
+          <End Type="dacnModel.stores" Role="stores" Multiplicity="0..1" />
+          <End Type="dacnModel.invoices" Role="invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="invoices">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="recipe_ingredients_ibfk_2">
+          <End Type="dacnModel.ingredients" Role="ingredients" Multiplicity="0..1" />
+          <End Type="dacnModel.recipe_ingredients" Role="recipe_ingredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ingredients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="recipe_ingredients">
+              <PropertyRef Name="ingredient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="warehouses_ibfk_2">
+          <End Type="dacnModel.ingredients" Role="ingredients" Multiplicity="0..1" />
+          <End Type="dacnModel.warehouses" Role="warehouses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ingredients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="warehouses">
+              <PropertyRef Name="ingredient_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="products_ibfk_1">
+          <End Type="dacnModel.product_type" Role="product_type" Multiplicity="0..1" />
+          <End Type="dacnModel.products" Role="products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="recipe_ingredients_ibfk_1">
+          <End Type="dacnModel.products" Role="products" Multiplicity="0..1" />
+          <End Type="dacnModel.recipe_ingredients" Role="recipe_ingredients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="recipe_ingredients">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="report_detail_ibfk_1">
+          <End Type="dacnModel.reports" Role="reports" Multiplicity="0..1" />
+          <End Type="dacnModel.report_detail" Role="report_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reports">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="report_detail">
+              <PropertyRef Name="report_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="reports_ibfk_1">
+          <End Type="dacnModel.stores" Role="stores" Multiplicity="0..1" />
+          <End Type="dacnModel.reports" Role="reports" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="reports">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="warehouses_ibfk_1">
+          <End Type="dacnModel.stores" Role="stores" Multiplicity="0..1" />
+          <End Type="dacnModel.warehouses" Role="warehouses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="stores">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="warehouses">
+              <PropertyRef Name="store_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1063,10 +1044,10 @@
           <EntitySetMapping Name="absent_history">
             <EntityTypeMapping TypeName="dacnModel.absent_history">
               <MappingFragment StoreEntitySet="absent_history">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
-                <ScalarProperty Name="shift_id" ColumnName="shift_id" />
                 <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1074,142 +1055,36 @@
             <EntityTypeMapping TypeName="dacnModel.assign_shifts">
               <MappingFragment StoreEntitySet="assign_shifts">
                 <ScalarProperty Name="week_id" ColumnName="week_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
                 <ScalarProperty Name="shift_id" ColumnName="shift_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="employees">
             <EntityTypeMapping TypeName="dacnModel.employees">
               <MappingFragment StoreEntitySet="employees">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
-                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="salary_rate" ColumnName="salary_rate" />
-                <ScalarProperty Name="store_id" ColumnName="store_id" />
                 <ScalarProperty Name="joined_date" ColumnName="joined_date" />
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+                <ScalarProperty Name="salary_rate" ColumnName="salary_rate" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="invoice_detail">
             <EntityTypeMapping TypeName="dacnModel.invoice_detail">
               <MappingFragment StoreEntitySet="invoice_detail">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
                 <ScalarProperty Name="invoice_id" ColumnName="invoice_id" />
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="invoices">
-            <EntityTypeMapping TypeName="dacnModel.invoices">
-              <MappingFragment StoreEntitySet="invoices">
-                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
-                <ScalarProperty Name="store_id" ColumnName="store_id" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ingredients">
-            <EntityTypeMapping TypeName="dacnModel.ingredients">
-              <MappingFragment StoreEntitySet="ingredients">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="product_type">
-            <EntityTypeMapping TypeName="dacnModel.product_type">
-              <MappingFragment StoreEntitySet="product_type">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="products">
-            <EntityTypeMapping TypeName="dacnModel.products">
-              <MappingFragment StoreEntitySet="products">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="formular" ColumnName="formular" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="type_id" ColumnName="type_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="recipe_ingredients">
-            <EntityTypeMapping TypeName="dacnModel.recipe_ingredients">
-              <MappingFragment StoreEntitySet="recipe_ingredients">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
-                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="report_detail">
-            <EntityTypeMapping TypeName="dacnModel.report_detail">
-              <MappingFragment StoreEntitySet="report_detail">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="report_id" ColumnName="report_id" />
-                <ScalarProperty Name="reason" ColumnName="reason" />
-                <ScalarProperty Name="price" ColumnName="price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="reports">
-            <EntityTypeMapping TypeName="dacnModel.reports">
-              <MappingFragment StoreEntitySet="reports">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="store_id" ColumnName="store_id" />
-                <ScalarProperty Name="time" ColumnName="time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="roles">
-            <EntityTypeMapping TypeName="dacnModel.roles">
-              <MappingFragment StoreEntitySet="roles">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="role_name" ColumnName="role_name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="shifts">
-            <EntityTypeMapping TypeName="dacnModel.shifts">
-              <MappingFragment StoreEntitySet="shifts">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="shift_time" ColumnName="shift_time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="stores">
-            <EntityTypeMapping TypeName="dacnModel.stores">
-              <MappingFragment StoreEntitySet="stores">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
-                <ScalarProperty Name="created_date" ColumnName="created_date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="warehouses">
-            <EntityTypeMapping TypeName="dacnModel.warehouses">
-              <MappingFragment StoreEntitySet="warehouses">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="store_id" ColumnName="store_id" />
-                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1221,12 +1096,118 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="invoices">
+            <EntityTypeMapping TypeName="dacnModel.invoices">
+              <MappingFragment StoreEntitySet="invoices">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ingredients">
+            <EntityTypeMapping TypeName="dacnModel.ingredients">
+              <MappingFragment StoreEntitySet="ingredients">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="product_type">
+            <EntityTypeMapping TypeName="dacnModel.product_type">
+              <MappingFragment StoreEntitySet="product_type">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="dacnModel.products">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="formular" ColumnName="formular" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recipe_ingredients">
+            <EntityTypeMapping TypeName="dacnModel.recipe_ingredients">
+              <MappingFragment StoreEntitySet="recipe_ingredients">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="report_detail">
+            <EntityTypeMapping TypeName="dacnModel.report_detail">
+              <MappingFragment StoreEntitySet="report_detail">
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="report_id" ColumnName="report_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reports">
+            <EntityTypeMapping TypeName="dacnModel.reports">
+              <MappingFragment StoreEntitySet="reports">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="dacnModel.roles">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shifts">
+            <EntityTypeMapping TypeName="dacnModel.shifts">
+              <MappingFragment StoreEntitySet="shifts">
+                <ScalarProperty Name="shift_time" ColumnName="shift_time" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="shifts_week">
             <EntityTypeMapping TypeName="dacnModel.shifts_week">
               <MappingFragment StoreEntitySet="shifts_week">
                 <ScalarProperty Name="start_date" ColumnName="start_date" />
                 <ScalarProperty Name="store_id" ColumnName="store_id" />
                 <ScalarProperty Name="week_number" ColumnName="week_number" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stores">
+            <EntityTypeMapping TypeName="dacnModel.stores">
+              <MappingFragment StoreEntitySet="stores">
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+                <ScalarProperty Name="manager_id" ColumnName="manager_id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="warehouses">
+            <EntityTypeMapping TypeName="dacnModel.warehouses">
+              <MappingFragment StoreEntitySet="warehouses">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="ingredient_id" ColumnName="ingredient_id" />
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

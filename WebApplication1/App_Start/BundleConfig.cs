@@ -25,7 +25,7 @@ namespace WebApplication1
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css"));
             bundles.Add(new StyleBundle("~/Content/myCss").Include("~/Content/custom.css", "~/Content/dashboard.css"));
-            bundles.Add(new ScriptBundle("~/Scripts/myJs").Include("~/Scripts/dashboard.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/myJs").Include("~/Scripts/dashboard.js","~/Scripts/notify.min.js"));
         }
     }
 }

@@ -29,7 +29,7 @@ namespace CoffeeShops.Models
         public virtual employees employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<invoice_detail> invoice_detail { get; set; }
-        public virtual stores stores { get; set; }
         public virtual invoice_status invoice_status { get; set; }
+        public virtual stores stores { get; set; }
     }
 }
