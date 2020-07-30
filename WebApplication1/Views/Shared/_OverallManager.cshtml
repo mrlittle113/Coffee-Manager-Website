@@ -1,6 +1,18 @@
-﻿
-@{
+﻿@using CoffeeShops.Models;
+@{    
     Layout = null;
+    if(Session["user"] == null)
+    {
+        Response.Redirect("~/Login/index");
+    }
+    else
+    {
+        employees user =(employees) Session["user"];
+        if (user.role != 1)
+        {
+            Response.Redirect("~/Login/accessdenied");
+        }
+    }
 }
 
 <!doctype html>
@@ -31,13 +43,13 @@
 </head>
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark bg-coffee flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Quản Lý Tổng</a>
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Overall Manager</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
+                <a class="btn btn-sm btn-secondary" href="~/Login/logOut">Sign out</a>
             </li>
         </ul>
     </nav>

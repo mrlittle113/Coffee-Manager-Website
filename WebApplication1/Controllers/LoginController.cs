@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using CoffeeShops.Models;
 using System.Data.SqlClient;
-using CoffeeShops.Models;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace WebApplication1.Controllers
 {
@@ -13,28 +10,43 @@ namespace WebApplication1.Controllers
         // GET: Login
         public ActionResult Index()
         {
+
             return View();
         }
         public ActionResult Auth()
         {
-            String user = Request.QueryString["username"];
-            String pass = Request.QueryString["password"];
-            if (Auth(user,pass))
+            string user = Request.QueryString["username"];
+            string pass = Request.QueryString["password"];
+            if (Auth(user, pass))
             {
-                return RedirectToAction("Overview", "Home");
+                employees emp = (employees)Session["user"];
+                switch ((int)emp.role)
+                {
+                    case 1:
+                        return RedirectToAction("Index", "OverallManager");
+                       
+                    case 2:
+                        return RedirectToAction("Index", "AgencyManager");
+                       
+                    case 3:
+                        return RedirectToAction("Index", "Staff");
+                    default:
+                        return RedirectToAction("Index", "Login");
+                }             
             }
             else
             {
-                return RedirectToAction("Index", "Login");
+                ViewBag.fail = true;
+                return View("Index");
             }
         }
-        private bool Auth(String user,String pass)
+        private bool Auth(string user, string pass)
         {
             using (dacnEntities db = new dacnEntities())
             {
-                String emp_id = db.Database.SqlQuery<String>("select id from employees where username = @u",new SqlParameter("@u",user)).FirstOrDefault();
+                int emp_id = db.Database.SqlQuery<int>("select id from employees where username = @u", new SqlParameter("@u", user)).FirstOrDefault();
                 employees emp = db.employees.Find(emp_id);
-                if (emp.Equals(null))
+                if (emp == null)
                 {
                     return false;
                 }
@@ -42,6 +54,7 @@ namespace WebApplication1.Controllers
                 {
                     if (emp.password.Equals(pass))
                     {
+                        Session.Add("user", emp);
                         return true;
                     }
                     else
@@ -50,6 +63,21 @@ namespace WebApplication1.Controllers
                     }
                 }
             }
+        }
+        public ActionResult logOut()
+        {
+            Session.Clear();
+            return RedirectToAction("Index", "Login");
+        }
+
+
+
+
+        public ActionResult accessDenied()
+        {
+
+            ViewBag.error = "ACCESS DENIED";
+            return View("Error");
         }
     }
 }

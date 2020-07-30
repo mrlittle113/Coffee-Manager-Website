@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="be4131f0055346028388516b085bd4c2" Name="Diagram1" ZoomLevel="82">
+      <Diagram DiagramId="be4131f0055346028388516b085bd4c2" Name="Diagram1" ZoomLevel="101">
         <EntityTypeShape EntityType="dacnModel.absent_history" Width="1.5" PointX="5.25" PointY="4.625" />
         <EntityTypeShape EntityType="dacnModel.assign_shifts" Width="1.5" PointX="5.25" PointY="7.625" />
         <EntityTypeShape EntityType="dacnModel.employees" Width="1.5" PointX="3" PointY="6.625" />
