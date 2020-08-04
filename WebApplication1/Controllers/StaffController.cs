@@ -120,6 +120,16 @@ namespace WebApplication1.Controllers
             db.SaveChanges();
             return Json(toMinus, JsonRequestBehavior.AllowGet);
         }
+        public void checkOut()
+        {
+            int id = int.Parse(Request.QueryString["id"]);
+            int total = int.Parse(Request.QueryString["total"]);
+            //
+            dacnEntities db = new dacnEntities();
+            db.invoices.Find(id).total = total;
+            db.invoices.Find(id).status = 2;
+            db.SaveChanges();
+        }
         public ActionResult Info()
         {
             return View();

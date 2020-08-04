@@ -224,12 +224,10 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OverallManagerController.cs" />
     <Compile Include="Controllers\ProductManagerController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\absent_history.cs">
-      <DependentUpon>Db.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\assign_shifts.cs">
       <DependentUpon>Db.tt</DependentUpon>
@@ -264,6 +262,11 @@
     <Compile Include="Models\invoice_status.cs">
       <DependentUpon>Db.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Json\Assign.cs" />
+    <Compile Include="Models\Json\Employee.cs" />
+    <Compile Include="Models\Json\Shift.cs" />
+    <Compile Include="Models\Json\Store.cs" />
+    <Compile Include="Models\Json\Week.cs" />
     <Compile Include="Models\products.cs">
       <DependentUpon>Db.tt</DependentUpon>
     </Compile>
@@ -291,7 +294,6 @@
     <Compile Include="Models\stores.cs">
       <DependentUpon>Db.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Trick.cs" />
     <Compile Include="Models\warehouses.cs">
       <DependentUpon>Db.tt</DependentUpon>
     </Compile>
@@ -483,6 +485,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Schedule\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

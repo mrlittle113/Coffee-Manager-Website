@@ -25,7 +25,6 @@ namespace CoffeeShops.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<absent_history> absent_history { get; set; }
         public virtual DbSet<assign_shifts> assign_shifts { get; set; }
         public virtual DbSet<employees> employees { get; set; }
         public virtual DbSet<invoice_detail> invoice_detail { get; set; }

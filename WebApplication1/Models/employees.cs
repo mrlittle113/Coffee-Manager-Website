@@ -17,7 +17,6 @@ namespace CoffeeShops.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public employees()
         {
-            this.absent_history = new HashSet<absent_history>();
             this.assign_shifts = new HashSet<assign_shifts>();
             this.stores1 = new HashSet<stores>();
             this.invoices = new HashSet<invoices>();
@@ -35,8 +34,6 @@ namespace CoffeeShops.Models
         public Nullable<int> store_id { get; set; }
         public System.DateTime joined_date { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<absent_history> absent_history { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<assign_shifts> assign_shifts { get; set; }
         public virtual roles roles { get; set; }

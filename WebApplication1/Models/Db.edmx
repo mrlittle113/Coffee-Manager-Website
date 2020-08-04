@@ -5,15 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="dacnModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="absent_history">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="employee_id" Type="int" />
-          <Property Name="shift_id" Type="int" />
-          <Property Name="time" Type="datetime" Nullable="false" />
-        </EntityType>
         <EntityType Name="assign_shifts">
           <Key>
             <PropertyRef Name="id" />
@@ -160,30 +151,6 @@
           <Property Name="ingredient_id" Type="int" />
           <Property Name="quantity" Type="int" />
         </EntityType>
-        <Association Name="absent_history_ibfk_1">
-          <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
-          <End Role="absent_history" Type="Self.absent_history" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="employees">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="absent_history">
-              <PropertyRef Name="employee_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="absent_history_ibfk_2">
-          <End Role="shifts" Type="Self.shifts" Multiplicity="0..1" />
-          <End Role="absent_history" Type="Self.absent_history" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="shifts">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="absent_history">
-              <PropertyRef Name="shift_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="assign_shifts_ibfk_2">
           <End Role="employees" Type="Self.employees" Multiplicity="0..1" />
           <End Role="assign_shifts" Type="Self.assign_shifts" Multiplicity="*" />
@@ -401,7 +368,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="dacnModelStoreContainer">
-          <EntitySet Name="absent_history" EntityType="Self.absent_history" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="assign_shifts" EntityType="Self.assign_shifts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="invoice_detail" EntityType="Self.invoice_detail" Schema="dbo" store:Type="Tables" />
@@ -418,14 +384,6 @@
           <EntitySet Name="shifts_week" EntityType="Self.shifts_week" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="stores" EntityType="Self.stores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="warehouses" EntityType="Self.warehouses" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="absent_history_ibfk_1" Association="Self.absent_history_ibfk_1">
-            <End Role="employees" EntitySet="employees" />
-            <End Role="absent_history" EntitySet="absent_history" />
-          </AssociationSet>
-          <AssociationSet Name="absent_history_ibfk_2" Association="Self.absent_history_ibfk_2">
-            <End Role="shifts" EntitySet="shifts" />
-            <End Role="absent_history" EntitySet="absent_history" />
-          </AssociationSet>
           <AssociationSet Name="assign_shifts_ibfk_2" Association="Self.assign_shifts_ibfk_2">
             <End Role="employees" EntitySet="employees" />
             <End Role="assign_shifts" EntitySet="assign_shifts" />
@@ -504,7 +462,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="dacnModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="dacnEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="absent_history" EntityType="dacnModel.absent_history" />
           <EntitySet Name="assign_shifts" EntityType="dacnModel.assign_shifts" />
           <EntitySet Name="employees" EntityType="dacnModel.employees" />
           <EntitySet Name="invoice_detail" EntityType="dacnModel.invoice_detail" />
@@ -521,14 +478,6 @@
           <EntitySet Name="shifts_week" EntityType="dacnModel.shifts_week" />
           <EntitySet Name="stores" EntityType="dacnModel.stores" />
           <EntitySet Name="warehouses" EntityType="dacnModel.warehouses" />
-          <AssociationSet Name="absent_history_ibfk_1" Association="dacnModel.absent_history_ibfk_1">
-            <End Role="employees" EntitySet="employees" />
-            <End Role="absent_history" EntitySet="absent_history" />
-          </AssociationSet>
-          <AssociationSet Name="absent_history_ibfk_2" Association="dacnModel.absent_history_ibfk_2">
-            <End Role="shifts" EntitySet="shifts" />
-            <End Role="absent_history" EntitySet="absent_history" />
-          </AssociationSet>
           <AssociationSet Name="assign_shifts_ibfk_2" Association="dacnModel.assign_shifts_ibfk_2">
             <End Role="employees" EntitySet="employees" />
             <End Role="assign_shifts" EntitySet="assign_shifts" />
@@ -602,17 +551,6 @@
             <End Role="warehouses" EntitySet="warehouses" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="absent_history">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="employee_id" Type="Int32" />
-          <Property Name="shift_id" Type="Int32" />
-          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="employees" Relationship="dacnModel.absent_history_ibfk_1" FromRole="absent_history" ToRole="employees" />
-          <NavigationProperty Name="shifts" Relationship="dacnModel.absent_history_ibfk_2" FromRole="absent_history" ToRole="shifts" />
-        </EntityType>
         <EntityType Name="assign_shifts">
           <Key>
             <PropertyRef Name="id" />
@@ -640,7 +578,6 @@
           <Property Name="salary_rate" Type="Int32" />
           <Property Name="store_id" Type="Int32" />
           <Property Name="joined_date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="absent_history" Relationship="dacnModel.absent_history_ibfk_1" FromRole="employees" ToRole="absent_history" />
           <NavigationProperty Name="assign_shifts" Relationship="dacnModel.assign_shifts_ibfk_2" FromRole="employees" ToRole="assign_shifts" />
           <NavigationProperty Name="roles" Relationship="dacnModel.emp_role" FromRole="employees" ToRole="roles" />
           <NavigationProperty Name="stores" Relationship="dacnModel.employees_ibfk_2" FromRole="employees" ToRole="stores" />
@@ -756,7 +693,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="shift_time" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="absent_history" Relationship="dacnModel.absent_history_ibfk_2" FromRole="shifts" ToRole="absent_history" />
           <NavigationProperty Name="assign_shifts" Relationship="dacnModel.assign_shifts_ibfk_3" FromRole="shifts" ToRole="assign_shifts" />
         </EntityType>
         <EntityType Name="shifts_week">
@@ -797,30 +733,6 @@
           <NavigationProperty Name="ingredients" Relationship="dacnModel.warehouses_ibfk_2" FromRole="warehouses" ToRole="ingredients" />
           <NavigationProperty Name="stores" Relationship="dacnModel.warehouses_ibfk_1" FromRole="warehouses" ToRole="stores" />
         </EntityType>
-        <Association Name="absent_history_ibfk_1">
-          <End Type="dacnModel.employees" Role="employees" Multiplicity="0..1" />
-          <End Type="dacnModel.absent_history" Role="absent_history" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="employees">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="absent_history">
-              <PropertyRef Name="employee_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="absent_history_ibfk_2">
-          <End Type="dacnModel.shifts" Role="shifts" Multiplicity="0..1" />
-          <End Type="dacnModel.absent_history" Role="absent_history" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="shifts">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="absent_history">
-              <PropertyRef Name="shift_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="assign_shifts_ibfk_2">
           <End Type="dacnModel.employees" Role="employees" Multiplicity="0..1" />
           <End Type="dacnModel.assign_shifts" Role="assign_shifts" Multiplicity="*" />
@@ -1043,16 +955,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dacnModelStoreContainer" CdmEntityContainer="dacnEntities">
-          <EntitySetMapping Name="absent_history">
-            <EntityTypeMapping TypeName="dacnModel.absent_history">
-              <MappingFragment StoreEntitySet="absent_history">
-                <ScalarProperty Name="time" ColumnName="time" />
-                <ScalarProperty Name="shift_id" ColumnName="shift_id" />
-                <ScalarProperty Name="employee_id" ColumnName="employee_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="assign_shifts">
             <EntityTypeMapping TypeName="dacnModel.assign_shifts">
               <MappingFragment StoreEntitySet="assign_shifts">

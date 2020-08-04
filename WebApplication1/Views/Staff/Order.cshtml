@@ -54,6 +54,7 @@
         }
             </h3>
             <h4>At your service!</h4>
+            <button onclick="testAjax()">test ajax</button>
         </div>
         <div class="row flex">
             <div class="col-lg-8 col-md-8 col-sm-12 mb-5">
@@ -103,7 +104,7 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <button style="width:100%" onclick="" class="btn btn-secondary text-center bg-coffee">
+                        <button id="checkout_btn" style="width:100%" onclick="" class="btn btn-secondary text-center bg-coffee">
                             <h6 id="checkout">Checkout</h6>
                             <img id="loading_gif" class="rounded" src="https://i.gifer.com/17xo.gif" style="margin:auto;height:30px;display:none" />
                         </button>
@@ -147,6 +148,7 @@
                     url: "/Staff/newInvoice", success: function (result) {
                         current_invoice = result.invoice_id;
                         document.getElementById("invoice_info").innerHTML = 'id ' + result.invoice_id + ' ' + result.status;
+                        document.getElementById("checkout_btn").onclick = checkout(current_invoice);
                         //
                         var quantity = document.getElementById("quantity_" + p_id).value;
                         current_invoice = result.invoice_id;
@@ -281,9 +283,26 @@
                 }
             });
         }
-
-
-
+        function checkout(id) {
+            $.ajax({
+                url: "/Staff/checkOut",
+                data: { id, total },
+                success: function () {
+                    window.alert("DONE");
+                    location.reload();
+                }
+            });
+        }
+        function testAjax() {
+            var id = 2;
+            $.ajax({
+                url: "/Schedule/getEmpByStore",
+                data: { id },
+                success: function (result) {
+                    console.log(result);
+                }
+            });
+        }
     </script>
 </body>
 </html>
