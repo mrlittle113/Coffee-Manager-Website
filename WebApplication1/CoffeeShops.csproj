@@ -223,6 +223,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OverallManagerController.cs" />
+    <Compile Include="Controllers\ProductManagerController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -290,6 +291,7 @@
     <Compile Include="Models\stores.cs">
       <DependentUpon>Db.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Trick.cs" />
     <Compile Include="Models\warehouses.cs">
       <DependentUpon>Db.tt</DependentUpon>
     </Compile>
@@ -477,6 +479,7 @@
     <Content Include="Views\Home\Overview.cshtml" />
     <Content Include="Views\AgencyManager\Index.cshtml" />
     <Content Include="Views\Staff\Index.cshtml" />
+    <Content Include="Views\ProductManager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

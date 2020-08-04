@@ -25,6 +25,7 @@ namespace CoffeeShops.Models
         public Nullable<int> store_id { get; set; }
         public System.DateTime created_date { get; set; }
         public Nullable<int> status { get; set; }
+        public Nullable<int> total { get; set; }
     
         public virtual employees employees { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

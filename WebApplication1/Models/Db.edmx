@@ -64,6 +64,7 @@
           <Property Name="store_id" Type="int" />
           <Property Name="created_date" Type="datetime" Nullable="false" />
           <Property Name="status" Type="int" />
+          <Property Name="total" Type="int" />
         </EntityType>
         <EntityType Name="ingredients">
           <Key>
@@ -678,6 +679,7 @@
           <NavigationProperty Name="invoice_detail" Relationship="dacnModel.invoice_detail_ibfk_1" FromRole="invoices" ToRole="invoice_detail" />
           <NavigationProperty Name="invoice_status" Relationship="dacnModel.status" FromRole="invoices" ToRole="invoice_status" />
           <NavigationProperty Name="stores" Relationship="dacnModel.invoices_ibfk_1" FromRole="invoices" ToRole="stores" />
+          <Property Name="total" Type="Int32" />
         </EntityType>
         <EntityType Name="ingredients">
           <Key>
@@ -1099,6 +1101,7 @@
           <EntitySetMapping Name="invoices">
             <EntityTypeMapping TypeName="dacnModel.invoices">
               <MappingFragment StoreEntitySet="invoices">
+                <ScalarProperty Name="total" ColumnName="total" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="created_date" ColumnName="created_date" />
                 <ScalarProperty Name="store_id" ColumnName="store_id" />

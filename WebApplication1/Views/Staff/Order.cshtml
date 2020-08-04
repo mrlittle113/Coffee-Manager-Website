@@ -17,7 +17,7 @@
     List<product_type> list = (List<product_type>)ViewBag.listType;
 }
 
-<<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -44,7 +44,7 @@
 <body style="background-image: url('../img/login_bg.jpg');background-size:cover;background-repeat:repeat-y;">
     <div class="container rounded bg-light p-5">
         <div class="py-1">
-            <h1>WELCOME TO COFFEE SHOP</h1>
+            <h1>WELCOME TO COFFEE SHOP <span> <img class="rounded" src="https://i.gifer.com/17xo.gif" style="margin:auto;height:50px" /></span></h1>
             <h3 class="font-weight-bold">
                 I am @try
                 {@user.name;
@@ -56,7 +56,7 @@
             <h4>At your service!</h4>
         </div>
         <div class="row flex">
-            <div class="col-8">
+            <div class="col-lg-8 col-md-8 col-sm-12 mb-5">
                 @foreach (product_type type in list)
                 {
                     <h5>@type.name </h5>
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="col-8">
                                         <input hidden id="product_id_@product.id" value="@product.id" type="number" />
-                                        <input id="quantity_@product.id" style="width:100%" type="number" min="0"  value="0" placeholder="số lượng" />
+                                        <input id="quantity_@product.id" style="width:100%" type="number" min="1" value="1" placeholder="số lượng" />
                                     </div>
                                 </div>
                                 <div class="row">
@@ -84,38 +84,30 @@
                 }
 
             </div>
-            <div class="col-4 p-3 rounded border border-dark">
+            <div class="col-lg-4 col-md-4 col-sm-12 p-3 rounded border border-dark">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Selected</span>
                 </h4>
-                <ul class="list-group mb-3">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed bg-coffee-light mt-1 my-1 pt-2 py-0">
-                        <div>
-                            <h6 class="my-0">Invoice Info</h6>
-                            <p id="invoice_info"> abcxyz</p>
-                        </div>
-
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-condensed bg-coffee-light mt-1 my-1 pt-2 py-0">
-                        <div>
-                            <h6 class="my-0">Product</h6>
-                        </div>
-                        <span class="text-muted">X2</span>
-                        <span class="text-muted"><h5>= $12</h5></span>
-                        <span class="text-muted"><button class="btn-sm btn-danger"><i class="fa fa-ban"></i></button></span>
-                    </li>
-                </ul>
-                <div class="row">
+                <div>
+                    <h6 class="my-0">Invoice Info</h6>
+                    <p id="invoice_info"></p>
+                </div>
+                <ul id="selected" class="list-group mb-3"></ul>
+                <div class="row col-12">
                     <div class="col-6">
                         <h3>Total</h3>
                     </div>
                     <div class="col-6">
-                        <h1 class="text-info">699.00$</h1>
+                        <h1 id="total" class="text-info">699.00$</h1>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <button style="width:100%" onclick="ajax()" class="btn btn-secondary bg-coffee">Checkout</button>
+                        <button style="width:100%" onclick="" class="btn btn-secondary text-center bg-coffee">
+                            <h6 id="checkout">Checkout</h6>
+                            <img id="loading_gif" class="rounded" src="https://i.gifer.com/17xo.gif" style="margin:auto;height:30px;display:none" />
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -125,29 +117,173 @@
     <script>
         var current_invoice = null;
         var num_of_products = 0;
+        var total = 0;
+
         function ajax() {
-            
+            document.getElementById("checkout").style.display = "none";
+            document.getElementById("loading_gif").style.display = "block";
+            $.ajax({
+                url: "/Staff/newInvoice", success: function (result) {
+                    current_invoice = result.invoice_id;
+                    document.getElementById("invoice_info").innerHTML = 'id ' + result.invoice_id + ' ' + result.status;
+                    document.getElementById("checkout").style.display = "block";
+                    document.getElementById("loading_gif").style.display = "none";
+                    //
+                    //
+                }
+            });
         }
         function addProductIntoInvoice(p_id) {
+            document.getElementById("checkout").style.display = "none";
+            document.getElementById("loading_gif").style.display = "block";
+            var selected = document.getElementById("selected");
+            console.log(num_of_products);
             if (num_of_products == 0) {
+                console.log("create invoice and add detail");
+                var productName = "";
+                var quantity = 0;
+                var sum = 0;
                 $.ajax({
                     url: "/Staff/newInvoice", success: function (result) {
                         current_invoice = result.invoice_id;
                         document.getElementById("invoice_info").innerHTML = 'id ' + result.invoice_id + ' ' + result.status;
+                        //
+                        var quantity = document.getElementById("quantity_" + p_id).value;
+                        current_invoice = result.invoice_id;
+                        //
+                        $.ajax({
+                            url: "/Staff/addInvoiceDetail",
+                            data: { p_id, quantity, current_invoice },
+                            success: function (result) {
+                                //to check
+                                //console.log(result);
+                                //to get data from server
+                                var id = result;
+                                $.ajax({
+                                    url: "/Staff/getInvoiceDetail",
+                                    data: { id },
+                                    success: function (result) {
+                                        //to display
+                                        quantity = result.quantity;
+                                        var invoice_detail_id = "invoice_detail_id_" + result.id;
+                                        var only_id = result.id;
+                                        //to check
+                                        console.log(result);
+                                        //to get data from server
+                                        var product_id = p_id;
+                                        $.ajax({
+                                            url: "/Staff/getProduct",
+                                            data: { product_id },
+                                            success: function (result) {
+                                                //to display
+                                                productName = result.name;
+                                                sum = result.price * quantity;
+                                                //to check
+                                                console.log(result);
+                                                //displayyyyyy
+                                                selected.innerHTML += "<li id=\"" + invoice_detail_id + "\" class=\"list-group-item d-flex justify-content-between lh-condensed bg-coffee-light mb-1 pt-1 pb-1 pr-3 pl-3\">"
+                                                    + "<div>"
+                                                    + "<h6 class=\"my-0\">" + productName + "</h6>"
+                                                    + "</div>"
+                                                    + "<span class=\"text-muted\">X" + quantity + "</span>"
+                                                    + "<span class=\"text-muted font-weight-bold\">=" + sum + "đ</span>"
+                                                    + "<span class=\"text-muted\"><button " + "onclick =\"removeDetail(" + only_id + ")\" class=\"btn-sm btn-danger\"><i class=\"fa fa-ban\"></i></button></span>"
+                                                    + " </li >"
+                                                    ;
+                                                num_of_products++;
+                                                console.log(num_of_products);
+                                                document.getElementById("checkout").style.display = "block";
+                                                document.getElementById("loading_gif").style.display = "none";
+                                                total += sum;
+                                                document.getElementById("total").innerHTML = total + "đ";
+                                            }
+                                        });
+                                    }
+                                });
+
+                            }
+                        });
+
                     }
                 });
+            } else {
+                console.log("only add detail");
+                var id = current_invoice;
+                var productName = "";
                 var quantity = document.getElementById("quantity_" + p_id).value;
+                var sum = 0;
                 $.ajax({
                     url: "/Staff/addInvoiceDetail",
                     data: { p_id, quantity, current_invoice },
-                    
                     success: function (result) {
-                        console.log(result);
+                        //to check
+                        //console.log(result);
+                        //to get data from server
+                        var id = result;
+                        $.ajax({
+                            url: "/Staff/getInvoiceDetail",
+                            data: { id },
+                            success: function (result) {
+                                //to display
+                                quantity = result.quantity;
+                                var invoice_detail_id = "invoice_detail_id_" + result.id;
+                                var only_id = result.id;
+                                //to check
+                                console.log(result);
+                                //to get data from server
+                                var product_id = p_id;
+                                $.ajax({
+                                    url: "/Staff/getProduct",
+                                    data: { product_id },
+                                    success: function (result) {
+                                        //to display
+                                        productName = result.name;
+                                        sum = result.price * quantity;
+                                        //to check
+                                        console.log(result);
+                                        //displayyyyyy
+
+                                        selected.innerHTML += "<li id=\"" + invoice_detail_id + "\" class=\"list-group-item d-flex justify-content-between lh-condensed bg-coffee-light mb-1 pt-1 pb-1 pr-3 pl-3\">"
+                                            + "<div>"
+                                            + "<h6 class=\"my-0\">" + productName + "</h6>"
+                                            + "</div>"
+                                            + "<span class=\"text-muted\">X" + quantity + "</span>"
+                                            + "<span class=\"text-muted font-weight-bold\">=" + sum + "đ</span>"
+                                            + "<span class=\"text-muted\"><button " + "onclick =\"removeDetail(" + only_id + ")\" class=\"btn-sm btn-danger\"><i class=\"fa fa-ban\"></i></button></span>"
+                                            + " </li >"
+                                            ;
+                                        num_of_products++;
+                                        console.log(num_of_products);
+                                        document.getElementById("checkout").style.display = "block";
+                                        document.getElementById("loading_gif").style.display = "none";
+                                        total += sum;
+                                        document.getElementById("total").innerHTML = total + "đ";
+                                    }
+                                });
+                            }
+                        });
+
                     }
                 });
-
             }
+
         }
+        function removeDetail(id) {
+            $.ajax({
+                url: "/Staff/removeDetail",
+                data: { id },
+                success: function (result) {
+                    document.getElementById("invoice_detail_id_" + id).classList.remove("d-flex");
+                    document.getElementById("invoice_detail_id_" + id).style.display = "none";
+                    total -= result;
+                    num_of_products--;
+                    document.getElementById("total").innerHTML = total + "đ";
+                }
+            });
+        }
+
+
+
     </script>
 </body>
 </html>
