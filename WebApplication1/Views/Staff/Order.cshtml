@@ -53,8 +53,7 @@
             { @e.Message;
         }
             </h3>
-            <h4>At your service!</h4>
-            <button onclick="testAjax()">test ajax</button>
+            <h4>At your service!</h4>           
         </div>
         <div class="row flex">
             <div class="col-lg-8 col-md-8 col-sm-12 mb-5">
@@ -99,23 +98,24 @@
                         <h3>Total</h3>
                     </div>
                     <div class="col-6">
-                        <h1 id="total" class="text-info">699.00$</h1>
+                        <h1 id="total" class="text-info">0đ</h1>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <button id="checkout_btn" style="width:100%" onclick="" class="btn btn-secondary text-center bg-coffee">
+                        <button id="checkout_btn" style="width:100%" class="btn btn-secondary text-center bg-coffee">
                             <h6 id="checkout">Checkout</h6>
                             <img id="loading_gif" class="rounded" src="https://i.gifer.com/17xo.gif" style="margin:auto;height:30px;display:none" />
                         </button>
 
                     </div>
-                </div>
+                </div>              
             </div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
+    <script>        
+        //
         var current_invoice = null;
         var num_of_products = 0;
         var total = 0;
@@ -148,7 +148,10 @@
                     url: "/Staff/newInvoice", success: function (result) {
                         current_invoice = result.invoice_id;
                         document.getElementById("invoice_info").innerHTML = 'id ' + result.invoice_id + ' ' + result.status;
-                        document.getElementById("checkout_btn").onclick = checkout(current_invoice);
+                        document.getElementById("checkout_btn").onclick = function () {
+                            checkout(current_invoice);
+                        };
+                            
                         //
                         var quantity = document.getElementById("quantity_" + p_id).value;
                         current_invoice = result.invoice_id;
@@ -284,6 +287,8 @@
             });
         }
         function checkout(id) {
+            document.getElementById("checkout").style.display = "none";
+            document.getElementById("loading_gif").style.display = "block";
             $.ajax({
                 url: "/Staff/checkOut",
                 data: { id, total },
