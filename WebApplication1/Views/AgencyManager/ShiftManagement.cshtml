@@ -9,19 +9,10 @@
             <div class=" mb-3 d-flex flex-row align-items-center">
                 <div class="p-2 bd-highlight"><h6>Monitoring </h6></div>
                 <div class="p-2 bd-highlight">
-                    <select class="form-control">
-                        <option>
-                            Week 1
-                        </option>
-                        <option>
-                            Week 1
-                        </option>
-                        <option>
-                            Week 1
-                        </option>
+                    <select class="form-control week-list" onchange="getWeekAssign()">
+
                     </select>
                 </div>
-                <div class="p-2 bd-highlight"><button class="btn btn-secondary bg-coffee"> query</button></div>
             </div>
 
         </form>
@@ -49,293 +40,490 @@
                         <th scope="row">
                             Shift 1<br /> (7h-12h)
                         </th>
-                        <td>
+                        <td class="shift-1">
                             <div class="d-inline-flex row justify-content-start">
                                 <div class="col-3"><p>Select</p></div>
                                 <div class="col-6">
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                                    <select class="form-group form-shift-1">
                                     </select>
                                 </div>
-                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee"><i class="fa fa-plus"></i></a></div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(1)"><i class="fa fa-plus"></i></a></div>
 
                             </div>
-                            <div class="row">
-                                <div class="col-9"><p>- Staff Nguyen Van A</p></div>
-                                <div class="col-3"><a class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a></div>
-                            </div>
+                        </td>
+                        <td class="shift-2">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-2">
+                                    </select>
+                                </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(2)"><i class="fa fa-plus"></i></a></div>
 
-                            <div class="row">
-                                <div class="col-9"><p>- Staff Nguyen Van A</p></div>
-                                <div class="col-3"><a class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-9"><p>- Staff Nguyen Van A</p></div>
-                                <div class="col-3"><a class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a></div>
-                            </div>
-<td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                    </select>
-                                </div>
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-3">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-3">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(3)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-4">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-4">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(4)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-5">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-5">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(5)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-6">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-6">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(6)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-7">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-7">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(7)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">
-                            Shift 1<br /> (12h-17h)
+                            Shift 2<br /> (12h-17h)
                         </th>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-8">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-8">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(8)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-9">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-9">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(9)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-10">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-10">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(10)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-11">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-11">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(11)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-12">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-12">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(12)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-13">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-13">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(13)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-14">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-14">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(14)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
 
                     </tr>
                     <tr>
                         <th scope="row">
-                            Shift 1<br /> (17h-22h)
+                            Shift 3<br /> (17h-22h)
                         </th>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-15">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-15">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(15)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-16">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-16">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(16)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-17">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-17">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(17)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-18">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-18">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(18)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-19">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-19">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(19)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-20">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-20">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(20)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
-                        <td>
-                            <div class="d-inline-flex justify-content-start">
-                                <div class="mr-1"><p>Add</p></div>
-                                <div>
-                                    <select class="form-group">
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
-                                        <option>Staff A</option>
+                        <td class="shift-21">
+                            <div class="d-inline-flex row justify-content-start">
+                                <div class="col-3"><p>Select</p></div>
+                                <div class="col-6">
+                                    <select class="form-group form-shift-21">
                                     </select>
                                 </div>
+                                <div class="col-3"><a class="btn btn-secondary btn-sm bg-coffee" onclick="handleAssign(21)"><i class="fa fa-plus"></i></a></div>
+
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="7"></td>                       
+                        <td colspan="7"></td>
                         <td><a class="btn btn-secondary bg-coffee d-flex text-center"><b style="margin:auto">Luu</b></a></td>
                     </tr>
                 </tbody>
             </table>
 
         </form>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
 
+            var listEmployee = [];
+            var options = [];
+            var weeks = [];
+            var init = true;
+            var thisWeek = 1;
+
+            // ajax get all emp from store by id
+            $.ajax({
+                url: "/Schedule/getEmpByStore",
+                data: {id: 1},
+                success: function (listEmp) {
+                    getWeek();
+                    console.log('listEmp', listEmp);
+                    listEmployee = listEmp;
+                    options = createOption(listEmp);
+                    appendOption(options);
+                }
+            });
+
+            // create prototype options
+            function createOption(listEmployee) {
+                var options = [];
+                listEmployee.forEach((emp) => {
+                    var option = document.createElement("OPTION");
+                    option.textContent = emp.name;
+                    option.value = emp.id;
+                    options.push(option);
+                })
+                return options;
+            }
+
+            // append options to emp list
+            function appendOption(options) {
+                var forms = document.getElementsByClassName("form-group");
+                var arr = Array.from(forms);
+                arr.forEach(form => {
+                    form.innerHTML = "";
+                    options.forEach(option => {
+                        cOption = option.cloneNode(true);
+                        form.appendChild(cOption);
+                    })
+                })
+            }
+
+            // handle assign emp to shift
+            function handleAssign(shift_id) {
+                console.log('handle assign');
+                let className = 'form-shift-' + shift_id;
+                let form = document.getElementsByClassName(className)[0];
+                let weekList = document.getElementsByClassName("week-list")[0];
+                let emp_id = form.value;
+                let week_id = weekList.value;
+
+                console.log(form.value);
+                $.ajax({
+                    url: "/Schedule/addAssign",
+                    data: {
+                        emp_id: emp_id,
+                        shift_id: shift_id,
+                        week_id: week_id
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        createAssign(shift_id, emp_id);
+                    }
+                });
+            }
+
+            // ajax get week from controller
+            function getWeek() {
+                $.ajax({
+                    url: "/Schedule/getWeekByStore",
+                    data: { id: 1 },
+                    success: function (result) {
+                        weeks = result;
+                        createWeekList(weeks);
+                        // init default week
+                        getAssignByWeek(weeks[0].id);
+                        thisWeek = weeks[0];
+                    }
+                });
+            }
+
+            // append week list to week select form
+            function createWeekList(weeks) {
+                let weekList = document.getElementsByClassName("week-list")[0];
+                weeks.forEach(week => {
+                    let option = document.createElement("OPTION");
+                    option.textContent = 'Week '.concat(week.week_number);
+                    option.value = week.id;
+                    weekList.appendChild(option);
+                })
+            }
+
+            // handle week select
+            function getWeekAssign() {
+                let weekList = document.getElementsByClassName("week-list")[0];
+                
+                console.log(weekList.value);
+                // re-create options
+                appendOption(options);
+                // ajax get
+                getAssignByWeek(weekList.value);
+                thisWeek = getWeekByID(weekList.value);
+            }
+
+            // get week by id
+            function getWeekByID(id) {
+                console.log('thisweek', weeks);
+                weeks.forEach(week => {
+                    if (week.id == id) {
+                        console.log('thisweek', week);
+                        return week;
+                    }
+                })
+            }
+
+            // get assign by week from controller
+            function getAssignByWeek(id) {
+                $.ajax({
+                    url: "/Schedule/getAssignByWeek",
+                    data: { id: id },
+                    success: function (assigns) {
+                        removeAssigns();
+                        createAssigns(assigns);
+                    }
+                });
+            }
+
+            // create assign append to shift form
+            function createAssigns(assigns) {
+                assigns.forEach(assign => {
+                    createAssign(assign.shift_id, assign.employee_id);
+                })
+            }
+@*            <div class="row">
+                <div class="col-9"><p>- Staff Nguyen Van A</p></div>
+                <div class="col-3"><a class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a></div>
+            </div>*@
+
+            // create assign append to shift form
+            function createAssign(shift_id, emp_id) {
+                let shift = document.getElementsByClassName("shift-".concat(shift_id))[0];
+                let row = document.createElement("DIV");
+                emp = getEmpByID(emp_id);
+                console.log('emp', emp);
+
+                let p = document.createElement("P");
+                p.textContent = emp.name;
+
+                let col9 = document.createElement("DIV");
+                col9.className = "col-9";
+                col9.appendChild(p);
+
+                let i = document.createElement("I");
+                i.className = "fa fa-times";
+
+                let a = document.createElement("A");
+                a.className = "btn btn-danger btn-sm";
+                a.appendChild(i);
+                a.onclick = function () {
+                    handleDeleteAssign(shift_id, emp_id, row);
+                };
+
+                let col3 = document.createElement("DIV");
+                col3.className = "col-3";
+                col3.appendChild(a);
+
+                row.className = "row assign";
+                row.appendChild(col9);
+                row.appendChild(col3);
+
+                shift.appendChild(row);
+                removeOptions(shift_id, emp_id);    
+            }
+
+            // get employee by id
+            function getEmpByID(id) {
+                for (let i = 0; i < listEmployee.length; i++) {
+                    if (listEmployee[i].id == id) {
+                        return listEmployee[i];
+                    }
+                }
+            }
+
+            // remove old assigns
+            function removeAssigns() {
+                var elements = document.getElementsByClassName("assign");
+                while (elements.length > 0) {
+                    elements[0].parentNode.removeChild(elements[0]);
+                }
+            }
+
+            // remote duplicate options
+            function removeOptions(shift_id, emp_id) {
+                var form = document.getElementsByClassName("form-shift-".concat(shift_id))[0];
+                console.log('element', form.children);
+                var options = Array.from(form.children);
+                options.forEach(option => {
+                    if (option.value == emp_id) {
+                        option.parentNode.removeChild(option);
+                    }
+                })
+            }
+
+            function handleDeleteAssign(shift_id, emp_id, row) {
+                console.log("delete", shift_id, emp_id);
+                $.ajax({
+                    url: "/Schedule/deleteAssign",
+                    data: {
+                        emp_id: emp_id,
+                        shift_id: shift_id,
+                        week_id: thisWeek.id
+                    },
+                    success: function (result) {
+                        console.log(result);
+                        row.parentNode.removeChild(row);
+                        let className = 'form-shift-' + shift_id;
+                        let form = document.getElementsByClassName(className)[0];
+                        let emp = getEmpByID(emp_id);
+                        // create option
+                        var option = document.createElement("OPTION");
+                        option.textContent = emp.name;
+                        option.value = emp.id;
+                        form.appendChild(option);
+                    }
+                });
+            }
+
+        </script>
     </div>
 </main>
 
