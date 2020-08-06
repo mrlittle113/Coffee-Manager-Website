@@ -55,7 +55,7 @@
         }
             </h3>
             <h4>At your service!</h4>
-            <button id="notify" onclick="test()">test</button>
+            <button id="notify">test</button>
         </div>
         <div class="row flex">
             <div class="col-lg-8 col-md-8 col-sm-12 mb-5">
@@ -300,16 +300,14 @@
                 url: "/Staff/checkOut",
                 data: { id, total },
                 success: function () {
-                    window.alert("DONE");
-                    location.reload();
+                    var chat = $.connection.NotifyHub;
+                    $.connection.hub.start().done(function () {
+                        chat.server.invoiceCome(current_invoice);
+                        location.reload();
+                    });                                       
                 }
             });
-        } 
-        function test() {
-            $.connection.hub.start().done(function () {
-                $.connection.NotifyHub.server.test();
-            });           
-        }
+        }        
     </script>
 </body>
 </html>
