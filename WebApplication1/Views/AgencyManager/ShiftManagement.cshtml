@@ -501,12 +501,14 @@
 
             function handleDeleteAssign(shift_id, emp_id, row) {
                 console.log("delete", shift_id, emp_id);
+                let weekList = document.getElementsByClassName("week-list")[0];
+                let week_id = weekList.value;
                 $.ajax({
                     url: "/Schedule/deleteAssign",
                     data: {
                         emp_id: emp_id,
                         shift_id: shift_id,
-                        week_id: thisWeek.id
+                        week_id: week_id
                     },
                     success: function (result) {
                         console.log(result);
