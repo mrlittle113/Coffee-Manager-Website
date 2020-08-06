@@ -1,7 +1,9 @@
 ﻿using CoffeeShops.Models;
+using CoffeeShops.Models.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+
 
 namespace WebApplication1.Controllers
 {
@@ -10,6 +12,10 @@ namespace WebApplication1.Controllers
 
         // GET: Staff
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult InvoicesMonitor()
         {
             return View();
         }
@@ -31,7 +37,7 @@ namespace WebApplication1.Controllers
             {
                 List<invoices> list = db.invoices.ToList();
                 generatedId = list[db.invoices.Count() - 1].id + 1;
-            }           
+            }
             //
             invoices invoices = new invoices
             {
@@ -39,7 +45,7 @@ namespace WebApplication1.Controllers
                 id = generatedId,
                 created_date = System.DateTime.Now,
                 employee_id = emp.id,
-                invoice_status = db.invoice_status.Find(4),
+                invoice_status = db.invoice_status.Find(0),
                 store_id = emp.store_id
             };
             db.invoices.Add(invoices);
@@ -48,7 +54,7 @@ namespace WebApplication1.Controllers
             return Json(new { invoice_id = invoices.id, status = invoices.invoice_status.name }, JsonRequestBehavior.AllowGet);
         }
         public JsonResult addInvoiceDetail()
-        {           
+        {
             //
             int invoice_id = int.Parse(Request.QueryString["current_invoice"]);
             int quantity = int.Parse(Request.QueryString["quantity"]);
@@ -62,7 +68,7 @@ namespace WebApplication1.Controllers
             {
                 List<invoice_detail> list = db.invoice_detail.ToList();
                 generatedId = list[db.invoice_detail.Count() - 1].id + 1;
-            }           
+            }
             //
             invoice_detail invoice_Detail = new invoice_detail()
             {
@@ -89,7 +95,7 @@ namespace WebApplication1.Controllers
                 invoice_id = (int)invoiceDetailFromDb.invoice_id
             };
             //
-           
+
             //
             return Json(json_Invoice_Detail, JsonRequestBehavior.AllowGet);
         }
@@ -115,11 +121,12 @@ namespace WebApplication1.Controllers
             int toMinus = 0;
             dacnEntities db = new dacnEntities();
             //
-            toMinus = (int) db.invoice_detail.Find(id).quantity * (int) db.invoice_detail.Find(id).products.price;
+            toMinus = (int)db.invoice_detail.Find(id).quantity * (int)db.invoice_detail.Find(id).products.price;
             db.invoice_detail.Remove(db.invoice_detail.Find(id));
             db.SaveChanges();
             return Json(toMinus, JsonRequestBehavior.AllowGet);
         }
+
         public void checkOut()
         {
             int id = int.Parse(Request.QueryString["id"]);
@@ -127,22 +134,58 @@ namespace WebApplication1.Controllers
             //
             dacnEntities db = new dacnEntities();
             db.invoices.Find(id).total = total;
+            db.invoices.Find(id).status = 1;
+            db.SaveChanges();
+        }
+        //
+        public JsonResult getAllInvoicesByStore()
+        {
+            int id = int.Parse(Request.QueryString["id"]);
+            dacnEntities db = new dacnEntities();
+            List<Invoice> list = new List<Invoice>();
+            foreach (invoices entity in db.invoices.ToList())
+            {
+                if (entity.store_id == id && entity.status==1)
+                {
+                    list.Add(Invoice.JsonConvert(entity));
+                }
+            };
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+        //
+        public void doneInvoice()
+        {
+            int id = int.Parse(Request.QueryString["id"]);
+            dacnEntities db = new dacnEntities();
             db.invoices.Find(id).status = 2;
             db.SaveChanges();
+        }
+
+        public void removeInvoice()
+        {
+            int id = int.Parse(Request.QueryString["id"]);
+            dacnEntities db = new dacnEntities();
+            db.invoices.Remove(db.invoices.Find(id));
+            db.SaveChanges();            
+        }
+        //
+        public JsonResult getInvoiceById()
+        {
+            int id = int.Parse(Request.QueryString["id"]);
+            dacnEntities db = new dacnEntities();
+            return Json(Invoice.JsonConvert(db.invoices.Find(id)), JsonRequestBehavior.AllowGet);
         }
         public ActionResult Info()
         {
             return View();
         }
     }
-
     internal class Json_type
     {
         public int id { get; set; }
         public string name { get; set; }
         public List<Json_product> list_products { get; set; }
     }
-
     public class Json_product
     {
         public int id { get; set; }

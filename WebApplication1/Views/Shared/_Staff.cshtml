@@ -1,17 +1,19 @@
 ﻿@using CoffeeShops.Models;
 @{
     Layout = null;
+    employees user = null;
     if (Session["user"] == null)
     {
         Response.Redirect("~/Login/index");
     }
     else
     {
-        employees user = (employees)Session["user"];
+        user = (employees)Session["user"];
         if (user.role != 3)
         {
             Response.Redirect("~/Login/accessdenied");
         }
+        
     }
 }
 
@@ -37,7 +39,7 @@
     @Scripts.Render("~/Scripts/bootstrap")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-    <script src="https://use.fontawesome.com/121057c135.js"></script>
+    <script src="https://use.fontawesome.com/121057c135.js"></script>  
 
 
 </head>
@@ -59,27 +61,15 @@
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <span data-feather="file"></span>
-                                Tổng quan <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file"></span>
-                                Chi nhánh
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file"></span>
-                                Tài chính
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="~/Staff/Order">
-                                <span data-feather="file"></span>
+                                <i class="fa fa-bars" aria-hidden="true"></i>
                                 Order Screen
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Staff/InvoicesMonitor">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                Invoices Screen
                             </a>
                         </li>
                     </ul>
@@ -88,6 +78,6 @@
             @RenderBody()
         </div>
     </div>
-
+    @RenderSection("scripts", required: false)
 </body>
 </html>

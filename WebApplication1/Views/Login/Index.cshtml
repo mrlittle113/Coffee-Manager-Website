@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Login";
-    Layout = null;
+    Layout = null;   
 }
 <!doctype html>
 <html lang="en">
@@ -32,7 +32,7 @@
                         </div>
                         <br />
                         <div>
-                            <button class="btn btn-lg btn-primary bg-coffee btn-block text-uppercase" type="submit">Sign in</button>
+                            <button class="btn btn-lg btn-primary bg-coffee btn-block text-uppercase" onclick="clearback()" type="submit">Sign in</button>
                         </div>
                         <br />
                         @try
@@ -60,6 +60,11 @@
     @Scripts.Render("~/Scripts/jqueryval")
     @Scripts.Render("~/Scripts/bootstrap")
     @Scripts.Render("~/Scripts/myJs")
+    <script>
+        function clearback() {
+            window.history.;
+        }
+    </script>
 </body>
 </html>
 
