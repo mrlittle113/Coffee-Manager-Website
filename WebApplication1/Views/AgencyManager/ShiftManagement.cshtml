@@ -1,7 +1,8 @@
-﻿
+﻿@using CoffeeShops.Models;
 @{
     ViewBag.Title = "ShiftManagement";
     Layout = "~/Views/Shared/_AgencyManager.cshtml";
+    employees emp = (employees)Session["user"];
 }
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 p-1">
     <div class="row rounded p-1 bg-coffee-light">
@@ -303,7 +304,7 @@
             // ajax get all emp from store by id
             $.ajax({
                 url: "/Schedule/getEmpByStore",
-                data: {id: 1},
+                data: {id: @emp.store_id},
                 success: function (listEmp) {
                     getWeek();
                     console.log('listEmp', listEmp);
@@ -364,9 +365,10 @@
 
             // ajax get week from controller
             function getWeek() {
+                
                 $.ajax({
                     url: "/Schedule/getWeekByStore",
-                    data: { id: 1 },
+                    data: { id:@emp.store_id },
                     success: function (result) {
                         weeks = result;
                         createWeekList(weeks);
