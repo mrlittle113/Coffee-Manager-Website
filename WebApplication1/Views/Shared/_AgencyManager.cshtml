@@ -1,14 +1,14 @@
 ﻿@using CoffeeShops.Models;
-@{    
+@{
     Layout = null;
-    if(Session["user"] == null)
+    if (Session["user"] == null)
     {
         Response.Redirect("~/Login/index");
     }
     else
     {
-        employees user =(employees) Session["user"];
-        if (user.role != 1)
+        employees user = (employees)Session["user"];
+        if (user.role != 2)
         {
             Response.Redirect("~/Login/accessdenied");
         }
@@ -43,7 +43,7 @@
 </head>
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark bg-coffee flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Overall Manager</a>
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Agency Manager</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -58,7 +58,7 @@
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link active" href="#">
                                 <span data-feather="file"></span>
                                 Tổng quan <span class="sr-only">(current)</span>
@@ -67,13 +67,25 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <span data-feather="file"></span>
-                                Tài chính
+                                Chi nhánh
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <span data-feather="file"></span>
-                                Thông tin cá nhân
+                                Tài chính
+                            </a>
+                        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/ProductManager/Index">
+                                <span data-feather="file"></span>
+                                Product Management
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/ProductManager/ShiftManagement">
+                                <span data-feather="file"></span>
+                                Shift Management
                             </a>
                         </li>
 
@@ -81,12 +93,8 @@
                 </div>
             </nav>
             @RenderBody()
-
         </div>
-
     </div>
 
-
 </body>
-
 </html>

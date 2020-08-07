@@ -9,7 +9,7 @@ namespace WebApplication1
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/Scripts/jquery").Include(
-                        "~/Scripts/jquery-3.5.1.slim.min.js"));
+                        "~/Scripts/jquery-3.5.1.min.js"));
 
             bundles.Add(new ScriptBundle("~/Scripts/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -25,7 +25,7 @@ namespace WebApplication1
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css"));
             bundles.Add(new StyleBundle("~/Content/myCss").Include("~/Content/custom.css", "~/Content/dashboard.css"));
-            bundles.Add(new ScriptBundle("~/Scripts/myJs").Include("~/Scripts/dashboard.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/myJs").Include("~/Scripts/dashboard.js","~/Scripts/notify.min.js"));
         }
     }
 }

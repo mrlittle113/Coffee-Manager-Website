@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace CoffeeShops.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,15 +17,12 @@ namespace WebApplication1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public shifts()
         {
-            this.absent_history = new HashSet<absent_history>();
             this.assign_shifts = new HashSet<assign_shifts>();
         }
     
         public int id { get; set; }
         public string shift_time { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<absent_history> absent_history { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<assign_shifts> assign_shifts { get; set; }
     }

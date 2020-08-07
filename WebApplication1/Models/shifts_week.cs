@@ -12,14 +12,20 @@ namespace CoffeeShops.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class warehouses
+    public partial class shifts_week
     {
-        public int id { get; set; }
-        public Nullable<int> store_id { get; set; }
-        public Nullable<int> ingredient_id { get; set; }
-        public Nullable<int> quantity { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public shifts_week()
+        {
+            this.assign_shifts = new HashSet<assign_shifts>();
+        }
     
-        public virtual ingredients ingredients { get; set; }
-        public virtual stores stores { get; set; }
+        public int id { get; set; }
+        public Nullable<int> week_number { get; set; }
+        public Nullable<int> store_id { get; set; }
+        public Nullable<System.DateTime> start_date { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<assign_shifts> assign_shifts { get; set; }
     }
 }

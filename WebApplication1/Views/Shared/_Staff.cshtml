@@ -1,17 +1,19 @@
 ﻿@using CoffeeShops.Models;
-@{    
+@{
     Layout = null;
-    if(Session["user"] == null)
+    employees user = null;
+    if (Session["user"] == null)
     {
         Response.Redirect("~/Login/index");
     }
     else
     {
-        employees user =(employees) Session["user"];
-        if (user.role != 1)
+        user = (employees)Session["user"];
+        if (user.role != 3)
         {
             Response.Redirect("~/Login/accessdenied");
         }
+        
     }
 }
 
@@ -37,13 +39,13 @@
     @Scripts.Render("~/Scripts/bootstrap")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-    <script src="https://use.fontawesome.com/121057c135.js"></script>
+    <script src="https://use.fontawesome.com/121057c135.js"></script>  
 
 
 </head>
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark bg-coffee flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Overall Manager</a>
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Staff</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -59,34 +61,23 @@
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <span data-feather="file"></span>
-                                Tổng quan <span class="sr-only">(current)</span>
+                            <a class="nav-link" href="~/Staff/Order">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                Order Screen
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file"></span>
-                                Tài chính
+                            <a class="nav-link" href="~/Staff/InvoicesMonitor">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                Invoices Screen
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file"></span>
-                                Thông tin cá nhân
-                            </a>
-                        </li>
-
                     </ul>
                 </div>
             </nav>
             @RenderBody()
-
         </div>
-
     </div>
-
-
+    @RenderSection("scripts", required: false)
 </body>
-
 </html>

@@ -7,19 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace CoffeeShops.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class absent_history
+    public partial class invoice_status
     {
-        public int id { get; set; }
-        public Nullable<int> employee_id { get; set; }
-        public Nullable<int> shift_id { get; set; }
-        public System.DateTime time { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public invoice_status()
+        {
+            this.invoices = new HashSet<invoices>();
+        }
     
-        public virtual employees employees { get; set; }
-        public virtual shifts shifts { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<invoices> invoices { get; set; }
     }
 }

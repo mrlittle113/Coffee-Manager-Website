@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace CoffeeShops.Models
 {
     using System;
     using System.Collections.Generic;
@@ -15,12 +15,12 @@ namespace WebApplication1.Models
     public partial class assign_shifts
     {
         public int id { get; set; }
-        public Nullable<int> store_id { get; set; }
         public Nullable<int> employee_id { get; set; }
         public Nullable<int> shift_id { get; set; }
+        public Nullable<int> week_id { get; set; }
     
-        public virtual stores stores { get; set; }
         public virtual employees employees { get; set; }
         public virtual shifts shifts { get; set; }
+        public virtual shifts_week shifts_week { get; set; }
     }
 }
