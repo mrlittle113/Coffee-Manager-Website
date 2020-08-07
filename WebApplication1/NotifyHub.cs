@@ -19,9 +19,9 @@ namespace CoffeeShops
             // Call the addNewMessageToPage method to update clients.
             Clients.All.addNewMessageToPage(name, message);
         }
-        public void invoiceCome(int id)
+        public void invoiceCome(int id,int store_id)
         {
-            Clients.All.addTask(id);
+            Clients.All.addTask(id, store_id);
         }
         public void test()
         {

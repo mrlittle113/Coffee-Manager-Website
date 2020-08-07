@@ -7,8 +7,7 @@
 }
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 p-1">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Tasks for Bartender</h1>
-        <button id="notify">test</button>
+        <h1 class="h2">Tasks for Bartender</h1>       
     </div>
     <div id="tasks">
         <h3 id="loading">LOADING... <img class="rounded" src="https://i.gifer.com/17xo.gif" style="margin:auto;height:50px" /></h3>
@@ -102,76 +101,78 @@
         // Reference the auto-generated proxy for the hub.
         var chat = $.connection.NotifyHub;
         // Create a function that the hub can call back to display messages.
-        chat.client.addTask = function (id) {
+        chat.client.addTask = function (id,store_id) {
             // Add the message to the page.
             console.log(id);
-            $.ajax({
-                url: "/staff/getinvoicebyid?id=" + id,
-                success: function (result) {
-                    
-                    var tasks = $("#tasks");
-                    var html = "";
-                    html += "<div class=\"rounded text-center p-1 mb-3 bg-coffee-light\">";
-                    html += "<table class=\"table rounded\">";
-                    html += "<thead>";
-                    html += "<tr>";
-                    //
-                    html += "<th scope=\"col\">";
-                    html += "ID: " + result.id;
-                    html += "</th>";
-                    //
-                    html += "<th scope=\"col\">";
-                    html += "Time: " + result.created_date;
-                    html += "</th>";
-                    //
-                    html += "<th id=\"status_" + result.id + "\" scope=\"col\" class=\"text-left\">";
-                    html += "Status: " + result.status.name;
-                    html += "</th>";
-                    //
-                    html += "<th scope=\"col\" >";
-                    html += "<button id=\"done_btn_" + result.id + "\" onclick=\"done(" + result.id + ")\" style=\"width:100% \"class=\"btn btn-info\">Done</button>";
-                    html += "</th>";
-                    //
-                    html += "</tr>";
-                    html += "</thead>";
-                    html += "</table>";
-                    //
-                    html += "<br/>"
-                    //
-                    html += "<table class=\"table rounded\">";
-                    html += "<tbody>";
-                    //
-                    var details = result.details;
-                    for (var j in details) {
+            if (store_id == @user.store_id) {
+                $.ajax({
+                    url: "/staff/getinvoicebyid?id=" + id,
+                    success: function (result) {
+
+                        var tasks = $("#tasks");
+                        var html = "";
+                        html += "<div class=\"rounded text-center p-1 mb-3 bg-coffee-light\">";
+                        html += "<table class=\"table rounded\">";
+                        html += "<thead>";
                         html += "<tr>";
                         //
-                        html += "<td>"
-                        html += details[j].quantity + "X";
-                        html += "</td>"
+                        html += "<th scope=\"col\">";
+                        html += "ID: " + result.id;
+                        html += "</th>";
                         //
-                        html += "<td>"
-                        html += details[j].product.name;
-                        html += "</td>"
+                        html += "<th scope=\"col\">";
+                        html += "Time: " + result.created_date;
+                        html += "</th>";
                         //
-                        html += "<td>"
-                        html += details[j].product.formular;
-                        html += "</td>"
+                        html += "<th id=\"status_" + result.id + "\" scope=\"col\" class=\"text-left\">";
+                        html += "Status: " + result.status.name;
+                        html += "</th>";
+                        //
+                        html += "<th scope=\"col\" >";
+                        html += "<button id=\"done_btn_" + result.id + "\" onclick=\"done(" + result.id + ")\" style=\"width:100% \"class=\"btn btn-info\">Done</button>";
+                        html += "</th>";
                         //
                         html += "</tr>";
+                        html += "</thead>";
+                        html += "</table>";
                         //
-                    }
-                    //
-                    html += "</tbody>";
-                    html += "</table>";
-                    //
-                    html += "</div>"
-                    //
+                        html += "<br/>"
+                        //
+                        html += "<table class=\"table rounded\">";
+                        html += "<tbody>";
+                        //
+                        var details = result.details;
+                        for (var j in details) {
+                            html += "<tr>";
+                            //
+                            html += "<td>"
+                            html += details[j].quantity + "X";
+                            html += "</td>"
+                            //
+                            html += "<td>"
+                            html += details[j].product.name;
+                            html += "</td>"
+                            //
+                            html += "<td>"
+                            html += details[j].product.formular;
+                            html += "</td>"
+                            //
+                            html += "</tr>";
+                            //
+                        }
+                        //
+                        html += "</tbody>";
+                        html += "</table>";
+                        //
+                        html += "</div>"
+                        //
 
-                    //
-                    tasks.prepend(html);
-                    window.alert("New Task Come");
-                }
-            });
+                        //
+                        tasks.prepend(html);
+                        window.alert("New Task Come");
+                    }
+                });
+            }           
         };
         // Start the connection.
         $.connection.hub.start();       

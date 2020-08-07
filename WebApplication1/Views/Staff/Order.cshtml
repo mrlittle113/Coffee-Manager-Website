@@ -55,7 +55,7 @@
         }
             </h3>
             <h4>At your service!</h4>
-            <button id="notify">test</button>
+           
         </div>
         <div class="row flex">
             <div class="col-lg-8 col-md-8 col-sm-12 mb-5">
@@ -302,7 +302,7 @@
                 success: function () {
                     var chat = $.connection.NotifyHub;
                     $.connection.hub.start().done(function () {
-                        chat.server.invoiceCome(current_invoice);
+                        chat.server.invoiceCome(current_invoice,@user.store_id);
                         location.reload();
                     });                                       
                 }
