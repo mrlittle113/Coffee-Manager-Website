@@ -1,6 +1,7 @@
 ﻿using CoffeeShops.Models;
 using CoffeeShops.Models.Json;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -31,9 +32,9 @@ namespace CoffeeShops.Controllers
             int id = int.Parse(Request.QueryString["id"]);
             dacnEntities db = new dacnEntities();
             List<Week> weeks = new List<Week>();
-            foreach(shifts_week entity in db.shifts_week.ToList())
+            foreach (shifts_week entity in db.shifts_week.ToList())
             {
-                if(entity.store_id == id)
+                if (entity.store_id == id)
                 {
                     weeks.Add(Week.JsonConvert(entity));
                 }
@@ -71,13 +72,33 @@ namespace CoffeeShops.Controllers
             //
             assign_shifts thisToDb = new assign_shifts()
             {
-                id=generatedId,
+                id = generatedId,
                 week_id = week_id,
                 shift_id = shift_id,
                 employee_id = emp_id
             };
             db.assign_shifts.Add(thisToDb);
             db.SaveChanges();
+        }
+        public void deleteAssign()
+        {
+            int week_id = int.Parse(Request.QueryString["week_id"]);
+            int shift_id = int.Parse(Request.QueryString["shift_id"]);
+            int emp_id = int.Parse(Request.QueryString["emp_id"]);
+            //
+            dacnEntities db = new dacnEntities();
+            int id = db.Database.SqlQuery<int>("select id from assign_shifts where week_id=@w and shift_id=@s and employee_id=@e", new SqlParameter("@w", week_id), new SqlParameter("@s", shift_id), new SqlParameter("@e", emp_id)).FirstOrDefault();
+
+            //
+            db.assign_shifts.Find(id).employee_id = null;
+            db.SaveChanges();
+        }
+        public JsonResult getWeekById()
+        {
+            int id= int.Parse(Request.QueryString["id"]);
+            dacnEntities db = new dacnEntities();           
+            //
+            return Json(Week.JsonConvert(db.shifts_week.Find(id)), JsonRequestBehavior.AllowGet);
         }
     }
 }
