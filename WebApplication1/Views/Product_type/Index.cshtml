@@ -1,0 +1,188 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_AgencyManager.cshtml";
+}
+
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 p-1">
+    <div class="row rounded p-1 bg-coffee-light">
+
+    </div>
+    <div class="row rounded p-1 bg-coffee-light">
+        <div class="row" style="width:100%">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="mytable" class="table table-bordred table-striped">
+                        <thead>
+                            <tr>
+                                <th colspan="3">
+                                    Ingredients List
+                                </th>
+                                <th>
+                                    <button class="btn btn-success btn-sm" data-title="Edit" data-toggle="modal" data-target="#add">Add new <i class="fa fa-plus"></i></button>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="rows">
+                            <tr>
+                                <td>Some</td>
+                                <td>Info</td>
+                                <td><button class="btn btn-primary btn-sm" data-title="Edit" data-toggle="modal" data-target="#edit"><i class="fa fa-pencil"></i></button></td>
+                                <td><button class="btn btn-danger btn-sm" data-title="Delete" data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+</main>
+
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="hidden" id="type_id" />
+                    <input id="new_name" class="form-control " type="text" placeholder="Mohsin">
+                </div>
+            </div>
+            <div class="modal-footer ">
+                <button type="button" onclick="edit_type()" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <h4 class="modal-title custom_align" id="Heading">Delete</h4>
+            </div>
+
+            <div class="modal-footer ">
+                <button type="submit" onclick="delete_type()" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span>confirm delete this employee</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <form>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    <h4 class="modal-title custom_align" id="Heading">Add new</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+
+                        <input id="type_name" required class="form-control" value="" type="text" placeholder="type_name">
+                    </div>
+                </div>
+                <div class="modal-footer ">
+                    <button type="submit" onclick="add_type()" class="btn btn-success btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Add <i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+    </form>
+    <!-- /.modal-dialog -->
+</div>
+<script>
+    window.onload = function () {
+        var rows = document.getElementById("rows");
+        $.ajax({
+            url: "/product_type/listproducttype",
+            success: function (result) {
+                for (var i in result) {
+                    var html = "";
+                    html += "<tr>";
+                    html += "<td>";
+                    html += result[i].id;
+                    html += "</td>";
+                    html += "<td>";
+                    html += result[i].name;
+                    html += "</td>";
+                    html += "<td>";
+                    html += "<button class=\"btn btn-primary btn-sm\" onclick=\"set(" + result[i].id + ")\" data-title=\"Edit\" data-toggle=\"modal\" data-target=\"#edit\"><i class=\"fa fa-pencil\"></i></button>";
+                    html += "</td>";
+                    html += "<td>";
+                    html += "<button class=\"btn btn-danger btn-sm\" onclick=\"set(" + result[i].id + ")\" data-title=\"Edit\" data-toggle=\"modal\" data-target=\"#delete\"><i class=\"fa fa-trash\"></i></button>";
+                    html += "</td>";
+                    html += "</tr>";
+                    rows.innerHTML += html;
+                }
+            }
+        });
+
+    }
+
+
+    function add_type() {
+        var name = document.getElementById("type_name").value;
+        console.log(type_name);
+        if (name.length != 0) {
+            $.ajax({
+                url: "/product_type/addtype",
+                data: { name },
+                success: function () {
+                    window.location.reload();
+                }
+            });
+        }
+    };
+    function set(id) {
+        document.getElementById("type_id").value = id;
+    }
+    function edit_type() {
+        var newname = document.getElementById("new_name").value;
+        var id = document.getElementById("type_id").value;
+        $.ajax({
+            url: "/product_type/edittype",
+            data: { id, newname },
+            success: function () {
+                window.location.reload();
+            }
+        });
+    }
+    function delete_type() {
+
+        var id = document.getElementById("type_id").value;
+        $.ajax({
+            url: "/product_type/deletetype",
+            data: { id},
+            success: function () {
+                window.location.reload();
+            }
+        });
+    }
+
+</script>
