@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1.Models
+namespace CoffeeShops.Models
 {
     using System;
     using System.Data.Entity;
@@ -25,10 +25,10 @@ namespace WebApplication1.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<absent_history> absent_history { get; set; }
         public virtual DbSet<assign_shifts> assign_shifts { get; set; }
         public virtual DbSet<employees> employees { get; set; }
         public virtual DbSet<invoice_detail> invoice_detail { get; set; }
+        public virtual DbSet<invoice_status> invoice_status { get; set; }
         public virtual DbSet<invoices> invoices { get; set; }
         public virtual DbSet<ingredients> ingredients { get; set; }
         public virtual DbSet<product_type> product_type { get; set; }
@@ -38,6 +38,7 @@ namespace WebApplication1.Models
         public virtual DbSet<reports> reports { get; set; }
         public virtual DbSet<roles> roles { get; set; }
         public virtual DbSet<shifts> shifts { get; set; }
+        public virtual DbSet<shifts_week> shifts_week { get; set; }
         public virtual DbSet<stores> stores { get; set; }
         public virtual DbSet<warehouses> warehouses { get; set; }
     }

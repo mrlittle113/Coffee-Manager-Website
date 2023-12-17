@@ -1,0 +1,39 @@
+﻿@using CoffeeShops.Models;
+@{
+    Layout = "~/Views/Shared/_AgencyManager.cshtml";
+    List<product_type> list = (List<product_type>)ViewBag.listTypes;
+}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 p-1">
+    <div class="rounded p-1 bg-coffee-light">
+        <table class="table table-bordered border-dark rounded">
+            <thead>
+                <tr>
+                    <td class="text-center" colspan="4">
+                        <h3 class="font-weight-bold">DANH SACH LOAI SAN PHAM</h3>
+                    </td>
+                    <td>
+                        <button style="width:100%" class="btn btn-secondary bg-coffee"> themmoi</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (product_type t in list)
+                {
+                    <tr>
+                        <th>@t.id</th>
+                        <td>@t.name</td>                      
+                        <td><a style="width:100%" class="btn btn-secondary bg-coffee">Chitiet</a></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+
+</main>

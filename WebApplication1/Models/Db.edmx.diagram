@@ -4,40 +4,41 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="be4131f0055346028388516b085bd4c2" Name="Diagram1" ZoomLevel="33">
-        <EntityTypeShape EntityType="dacnModel.absent_history" Width="1.5" PointX="8.25" PointY="8" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.assign_shifts" Width="1.5" PointX="4.125" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.employees" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.invoice_detail" Width="1.5" PointX="10.5" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.invoices" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.ingredients" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.product_type" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.products" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.recipe_ingredients" Width="1.5" PointX="10.5" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.report_detail" Width="1.5" PointX="6.125" PointY="14.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.reports" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.roles" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.shifts" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.stores" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="dacnModel.warehouses" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <AssociationConnector Association="dacnModel.absent_history_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.absent_history_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.assign_shifts_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.assign_shifts_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.assign_shifts_ibfk_3" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.emp_role" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.employees_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.invoices_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.invoice_detail_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.invoice_detail_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.invoices_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.recipe_ingredients_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.warehouses_ibfk_2" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.products_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.recipe_ingredients_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.report_detail_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.reports_ibfk_1" ManuallyRouted="false" />
-        <AssociationConnector Association="dacnModel.warehouses_ibfk_1" ManuallyRouted="false" />
+      <Diagram DiagramId="be4131f0055346028388516b085bd4c2" Name="Diagram1" ZoomLevel="101">
+        <EntityTypeShape EntityType="dacnModel.assign_shifts" Width="1.5" PointX="5.25" PointY="7.625" />
+        <EntityTypeShape EntityType="dacnModel.employees" Width="1.5" PointX="3" PointY="6.625" />
+        <EntityTypeShape EntityType="dacnModel.invoice_detail" Width="1.5" PointX="9.75" PointY="10.5" />
+        <EntityTypeShape EntityType="dacnModel.invoice_status" Width="1.5" PointX="5.25" PointY="10.75" />
+        <EntityTypeShape EntityType="dacnModel.invoices" Width="1.5" PointX="7.5" PointY="10.125" />
+        <EntityTypeShape EntityType="dacnModel.ingredients" Width="1.5" PointX="5.25" PointY="17.875" />
+        <EntityTypeShape EntityType="dacnModel.product_type" Width="1.5" PointX="5.25" PointY="1.75" />
+        <EntityTypeShape EntityType="dacnModel.products" Width="1.5" PointX="7.5" PointY="1.25" />
+        <EntityTypeShape EntityType="dacnModel.recipe_ingredients" Width="1.5" PointX="9.75" PointY="7.375" />
+        <EntityTypeShape EntityType="dacnModel.report_detail" Width="1.5" PointX="9.75" PointY="20.25" />
+        <EntityTypeShape EntityType="dacnModel.reports" Width="1.5" PointX="7.5" PointY="20.25" />
+        <EntityTypeShape EntityType="dacnModel.roles" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="dacnModel.shifts" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="dacnModel.shifts_week" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="dacnModel.stores" Width="1.5" PointX="5.25" PointY="13.125" />
+        <EntityTypeShape EntityType="dacnModel.warehouses" Width="1.5" PointX="7.5" PointY="13.75" />
+        <AssociationConnector Association="dacnModel.assign_shifts_ibfk_2" />
+        <AssociationConnector Association="dacnModel.assign_shifts_ibfk_3" />
+        <AssociationConnector Association="dacnModel.week" />
+        <AssociationConnector Association="dacnModel.emp_role" />
+        <AssociationConnector Association="dacnModel.employees_ibfk_2" />
+        <AssociationConnector Association="dacnModel.Fk_manager" />
+        <AssociationConnector Association="dacnModel.invoices_ibfk_2" />
+        <AssociationConnector Association="dacnModel.invoice_detail_ibfk_1" />
+        <AssociationConnector Association="dacnModel.invoice_detail_ibfk_2" />
+        <AssociationConnector Association="dacnModel.status" />
+        <AssociationConnector Association="dacnModel.invoices_ibfk_1" />
+        <AssociationConnector Association="dacnModel.recipe_ingredients_ibfk_2" />
+        <AssociationConnector Association="dacnModel.warehouses_ibfk_2" />
+        <AssociationConnector Association="dacnModel.products_ibfk_1" />
+        <AssociationConnector Association="dacnModel.recipe_ingredients_ibfk_1" />
+        <AssociationConnector Association="dacnModel.report_detail_ibfk_1" />
+        <AssociationConnector Association="dacnModel.reports_ibfk_1" />
+        <AssociationConnector Association="dacnModel.warehouses_ibfk_1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
